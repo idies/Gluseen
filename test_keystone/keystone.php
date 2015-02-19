@@ -126,11 +126,11 @@ EOT;
         /* The response is a JSON document. Decode it into an object. */
         return json_decode($result);
       }
-   catch ( Exception $e)
-	{
-	  curl_close($ch);
+ //  catch ( Exception $e)
+	//{
+	  //curl_close($ch);
 	  
-	}
+	//}
       
   }
 ?>
