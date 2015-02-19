@@ -106,8 +106,8 @@ EOT;
         "X-Subject-Token: $user_token"
       ));
         
-    //try 
-    //{
+  try 
+   {
       $result = curl_exec($ch);
       $info = curl_getinfo($ch);
       $http_code = (int) $info['http_code'];
@@ -126,11 +126,11 @@ EOT;
         /* The response is a JSON document. Decode it into an object. */
         return json_decode($result);
       }
- //  catch ( Exception $e)
-	//{
-	  //curl_close($ch);
-	  
-	//}
-      
+    }
+   // finally 
+   catch  ( Exception $e)
+    {
+      curl_close($ch);
+    }
   }
 ?>
