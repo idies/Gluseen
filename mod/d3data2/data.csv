@@ -1,0 +1,101 @@
+row,teabagID,siteID,deploymentDate,deploymentWeight,collectionDate,cleanWeight,pctDecrease,comment,gridX,gridY,userID
+123,341,1014 Springfield,11/5/2013,1.850,3/24/2014,1.483,19.84,,1,3,szlavecz
+124,937,1014 Springfield,11/5/2013,1.807,3/24/2014,1.544,14.55,,1,4,szlavecz
+122,1331,1014 Springfield,11/5/2013,1.848,3/24/2014,1.470,20.45,,1,2,szlavecz
+125,1334,1014 Springfield,11/5/2013,1.835,3/24/2014,1.530,16.62,,1,5,szlavecz
+121,1429,1014 Springfield,11/5/2013,1.803,3/24/2014,1.407,21.96,,1,1,szlavecz
+25,550,601 Woodbourne & Ready Ave,11/5/2013,1.803,3/24/2014,1.528,15.25,String torn,1,5,szlavecz
+23,836,601 Woodbourne & Ready Ave,11/5/2013,1.842,3/24/2014,1.405,23.72,,1,3,szlavecz
+24,1357,601 Woodbourne & Ready Ave,11/5/2013,1.793,3/24/2014,1.490,16.90,,1,4,szlavecz
+22,1406,601 Woodbourne & Ready Ave,11/5/2013,1.787,3/24/2014,1.436,19.64,Bag torn,1,2,szlavecz
+21,1437,601 Woodbourne & Ready Ave,11/5/2013,1.816,3/24/2014,1.503,17.24,String torn,1,1,szlavecz
+201,1035,Evergreen,11/5/2013,1.830,3/24/2014,1.499,18.09,,1,1,szlavecz
+202,1299,Evergreen,11/5/2013,1.815,3/24/2014,1.657,8.71,,1,2,szlavecz
+204,1348,Evergreen,11/5/2013,1.859,3/24/2014,1.561,16.03,,1,4,szlavecz
+205,1351,Evergreen,11/5/2013,1.817,3/24/2014,1.618,10.95,,1,5,szlavecz
+203,1420,Evergreen,11/5/2013,1.857,3/24/2014,1.529,17.66,,1,3,szlavecz
+3,1279,Govans Urban,11/5/2013,1.804,3/24/2014,1.552,13.97,,1,3,szlavecz
+2,1367,Govans Urban,11/5/2013,1.840,3/24/2014,1.493,18.86,,1,2,szlavecz
+1,1377,Govans Urban,11/5/2013,1.853,3/24/2014,1.483,19.97,,1,1,szlavecz
+4,1380,Govans Urban,11/5/2013,1.810,3/24/2014,1.577,12.87,,1,4,szlavecz
+5,1768,Govans Urban,11/5/2013,1.842,3/24/2014,1.440,21.82,,1,5,szlavecz
+183,414,JHU Mound,11/5/2013,1.840,3/24/2014,1.572,14.57,"String torn, seam ripped",1,3,szlavecz
+185,903,JHU Mound,11/5/2013,1.845,3/24/2014,1.795,2.71,,1,5,szlavecz
+184,1323,JHU Mound,11/5/2013,1.860,3/24/2014,1.692,9.03,,1,4,szlavecz
+182,1484,JHU Mound,11/5/2013,1.791,3/24/2014,1.740,2.85,Small tears in bag,1,2,szlavecz
+181,1497,JHU Mound,11/5/2013,1.824,3/24/2014,1.714,6.03,,1,1,szlavecz
+241,912,Kathy's Lawn,11/5/2013,1.849,3/24/2014,1.551,16.12,,1,1,szlavecz
+244,993,Kathy's Lawn,11/5/2013,1.827,3/24/2014,ND,ND,Bag ripped and empty,1,4,szlavecz
+242,1312,Kathy's Lawn,11/5/2013,1.826,3/24/2014,1.460,20.04,,1,2,szlavecz
+243,1341,Kathy's Lawn,11/5/2013,1.814,3/24/2014,1.408,22.38,,1,3,szlavecz
+245,1595,Kathy's Lawn,11/5/2013,1.837,3/24/2014,1.479,19.49,Bag torn,1,5,szlavecz
+221,1350,Linkwood baseball field ,11/5/2013,1.788,3/24/2014,1.668,6.71,,1,1,szlavecz
+224,1376,Linkwood baseball field ,11/5/2013,1.799,3/24/2014,1.487,17.34,Torn open during retrieval,1,4,szlavecz
+225,1394,Linkwood baseball field ,11/5/2013,1.865,3/24/2014,1.708,8.42,String torn,1,5,szlavecz
+222,1414,Linkwood baseball field ,11/5/2013,1.801,3/24/2014,1.584,12.05,,1,2,szlavecz
+223,1740,Linkwood baseball field ,11/5/2013,1.857,3/24/2014,1.703,8.29,,1,3,szlavecz
+161,973,Olin Forest,11/5/2013,1.838,3/24/2014,1.691,8.00,,1,1,szlavecz
+165,1313,Olin Forest,11/5/2013,1.805,3/24/2014,1.633,9.53,,1,5,szlavecz
+163,1417,Olin Forest,11/5/2013,1.860,3/24/2014,1.772,4.73,Appeared to be on top of soil during pickup,1,3,szlavecz
+162,1459,Olin Forest,11/5/2013,1.805,3/24/2014,1.586,12.13,,1,2,szlavecz
+164,1745,Olin Forest,11/5/2013,1.854,3/24/2014,1.673,9.76,Appeared to be on top of soil during pickup,1,4,szlavecz
+102,1267,Springfield Woods,11/5/2013,1.808,3/24/2014,1.465,18.97,String torn,1,2,szlavecz
+104,1273,Springfield Woods,11/5/2013,1.852,3/24/2014,1.632,11.88,Bag torn,1,4,szlavecz
+103,1375,Springfield Woods,11/5/2013,1.779,3/24/2014,1.511,15.06,,1,3,szlavecz
+105,1430,Springfield Woods,11/5/2013,1.867,3/24/2014,1.499,19.71,,1,5,szlavecz
+101,1495,Springfield Woods,11/5/2013,1.768,3/24/2014,1.492,15.61,,1,1,szlavecz
+142,1347,The Alameda and Springfield,11/5/2013,1.811,3/24/2014,1.559,13.91,,1,2,szlavecz
+144,1479,The Alameda and Springfield,11/5/2013,1.820,3/24/2014,1.560,14.29,,1,4,szlavecz
+143,1490,The Alameda and Springfield,11/5/2013,1.801,3/24/2014,1.505,16.44,,1,3,szlavecz
+145,1583,The Alameda and Springfield,11/5/2013,1.847,3/24/2014,ND,ND,Bag ripped in half,1,5,szlavecz
+141,1585,The Alameda and Springfield,11/5/2013,1.788,3/24/2014,1.540,13.87,,1,1,szlavecz
+43,59,Wilson Park,11/5/2013,1.778,3/24/2014,1.528,14.06,,1,3,szlavecz
+44,1002,Wilson Park,11/5/2013,1.818,3/24/2014,1.550,14.74,,1,4,szlavecz
+42,1498,Wilson Park,11/5/2013,1.801,3/24/2014,1.534,14.83,,1,2,szlavecz
+45,1782,Wilson Park,11/5/2013,1.798,3/24/2014,1.584,11.90,,1,5,szlavecz
+41,1788,Wilson Park,11/5/2013,1.828,3/24/2014,1.619,11.43,,1,1,szlavecz
+62,1320,Wilson Park vacant,11/5/2013,1.815,3/24/2014,1.542,15.04,,1,2,szlavecz
+65,1482,Wilson Park vacant,11/5/2013,1.875,3/24/2014,1.605,14.40,,1,5,szlavecz
+64,1492,Wilson Park vacant,11/5/2013,1.799,3/24/2014,1.518,15.62,,1,4,szlavecz
+63,1746,Wilson Park vacant,11/5/2013,1.869,3/24/2014,1.484,20.60,,1,3,szlavecz
+61,1756,Wilson Park vacant,11/5/2013,1.841,3/24/2014,1.443,21.62,,1,1,szlavecz
+81,1275,Woman in stained wood house,11/5/2013,1.844,3/24/2014,1.538,16.59,,1,1,szlavecz
+83,1373,Woman in stained wood house,11/5/2013,1.840,3/24/2014,1.631,11.36,,1,3,szlavecz
+82,1421,Woman in stained wood house,11/5/2013,1.797,3/24/2014,1.565,12.91,,1,2,szlavecz
+84,1448,Woman in stained wood house,11/5/2013,1.843,3/24/2014,1.564,15.14,,1,4,szlavecz
+85,1755,Woman in stained wood house,11/5/2013,1.810,3/24/2014,1.598,11.71,,1,5,szlavecz
+262,274,JHU Garage,11/5/2013,1.828,3/25/2014,ND,ND,Bag torn,1,2,szlavecz
+265,968,JHU Garage,11/5/2013,1.833,3/25/2014,1.548,15.55,,1,5,szlavecz
+261,1439,JHU Garage,11/5/2013,1.820,3/25/2014,1.622,10.88,,1,1,szlavecz
+263,1476,JHU Garage,11/5/2013,1.827,3/25/2014,1.564,14.40,,1,3,szlavecz
+264,1487,JHU Garage,11/5/2013,1.802,3/25/2014,1.513,16.04,,1,4,szlavecz
+283,1268,JHU Homewood House,11/5/2013,1.851,3/25/2014,1.598,13.67,String torn,1,3,szlavecz
+282,1301,JHU Homewood House,11/5/2013,1.863,3/25/2014,1.649,11.49,String torn,1,2,szlavecz
+281,1353,JHU Homewood House,11/5/2013,1.756,3/25/2014,1.586,9.68,,1,1,szlavecz
+285,1419,JHU Homewood House,11/5/2013,1.857,3/25/2014,1.449,21.97,,1,5,szlavecz
+284,1737,JHU Homewood House,11/5/2013,1.849,3/25/2014,1.590,14.01,,1,4,szlavecz
+305,1390,Oregon Ridge - Ivy Hill on Ivy Hill Trail,11/6/2013,1.863,3/25/2014,1.609,13.63,,1,5,szlavecz
+301,1463,Oregon Ridge - Ivy Hill on Ivy Hill Trail,11/6/2013,1.806,3/25/2014,1.556,13.84,,1,1,szlavecz
+302,1589,Oregon Ridge - Ivy Hill on Ivy Hill Trail,11/6/2013,1.810,3/25/2014,1.519,16.08,,1,2,szlavecz
+304,1590,Oregon Ridge - Ivy Hill on Ivy Hill Trail,11/6/2013,1.798,3/25/2014,1.541,14.29,,1,4,szlavecz
+303,1596,Oregon Ridge - Ivy Hill on Ivy Hill Trail,11/6/2013,1.842,3/25/2014,1.580,14.22,,1,3,szlavecz
+383,1006,Oregon Ridge - James Campbell Trail,11/6/2013,1.781,3/25/2014,1.582,11.17,,1,3,szlavecz
+381,1316,Oregon Ridge - James Campbell Trail,11/6/2013,1.820,3/25/2014,1.533,15.77,,1,1,szlavecz
+382,1422,Oregon Ridge - James Campbell Trail,11/6/2013,1.869,3/25/2014,1.603,14.23,,1,2,szlavecz
+385,1472,Oregon Ridge - James Campbell Trail,11/6/2013,1.838,3/25/2014,1.576,14.25,,1,5,szlavecz
+384,1477,Oregon Ridge - James Campbell Trail,11/6/2013,1.896,3/25/2014,1.624,14.35,,1,4,szlavecz
+364,1011,Oregon Ridge - Laurel Blue Trail,11/6/2013,1.851,3/25/2014,1.618,12.59,,1,4,szlavecz
+361,1282,Oregon Ridge - Laurel Blue Trail,11/6/2013,1.850,3/25/2014,1.617,12.59,,1,1,szlavecz
+365,1283,Oregon Ridge - Laurel Blue Trail,11/6/2013,1.754,3/25/2014,1.523,13.17,,1,5,szlavecz
+362,1598,Oregon Ridge - Laurel Blue Trail,11/6/2013,1.785,3/25/2014,1.554,12.94,,1,2,szlavecz
+363,1770,Oregon Ridge - Laurel Blue Trail,11/6/2013,1.787,3/25/2014,1.670,6.55,,1,3,szlavecz
+344,844,Oregon Ridge - Loggers Trail,11/6/2013,1.859,3/25/2014,1.486,20.06,Bag was on top of soil.,1,4,szlavecz
+342,884,Oregon Ridge - Loggers Trail,11/6/2013,1.802,3/25/2014,1.553,13.82,,1,2,szlavecz
+345,1314,Oregon Ridge - Loggers Trail,11/6/2013,1.815,3/25/2014,1.548,14.71,,1,5,szlavecz
+341,1368,Oregon Ridge - Loggers Trail,11/6/2013,1.855,3/25/2014,1.535,17.25,Bag was on top of soil.,1,1,szlavecz
+343,1783,Oregon Ridge - Loggers Trail,11/6/2013,1.842,3/25/2014,1.530,16.94,,1,3,szlavecz
+325,943,Oregon Ridge - Nature Center on Ivy Hill Trail,11/6/2013,1.768,3/25/2014,1.510,14.59,,1,5,szlavecz
+321,1291,Oregon Ridge - Nature Center on Ivy Hill Trail,11/6/2013,1.830,3/25/2014,1.570,14.21,,1,1,szlavecz
+323,1352,Oregon Ridge - Nature Center on Ivy Hill Trail,11/6/2013,1.828,3/25/2014,1.594,12.80,,1,3,szlavecz
+322,1412,Oregon Ridge - Nature Center on Ivy Hill Trail,11/6/2013,1.789,3/25/2014,1.490,16.71,,1,2,szlavecz
+324,1758,Oregon Ridge - Nature Center on Ivy Hill Trail,11/6/2013,1.834,3/25/2014,1.568,14.50,,1,4,szlavecz
