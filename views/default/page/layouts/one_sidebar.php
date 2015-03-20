@@ -43,29 +43,29 @@ border: 1px solid black;
 <div class="elgg-col elgg-col-1of5">
 <div class="leftbar">
 <ul >
-	<li style="padding:5px"><a href="/"><font color="black">Home</font></a></li>
-<li style="padding:5px"><a href="/activity"><font color="black">Activity</font></a></li>
-	<li style="padding:5px"><a href="/members"><font color="black">Collaborations</font></a></li>
-	<li style="padding:5px"><a href="/groups/all"><font color="black">Groups</font></a></li>
+<li style="padding:5px"><a href="/elgg"><font color="black">Home</font></a></li>
+<li style="padding:5px"><a href="/elgg/activity"><font color="black">Activity</font></a></li>
+	<li style="padding:5px"><a href="/elgg/members"><font color="black">Collaborations</font></a></li>
+	<li style="padding:5px"><a href="/elgg/groups/all"><font color="black">Groups</font></a></li>
 	
-	<li style="padding:5px"><a href="/blog/all"><font color="black">Blog</font></a></li>
+	<li style="padding:5px"><a href="/elgg/blog/all"><font color="black">Blog</font></a></li>
 	<li style="padding:5px"><font color="black">Data</font>
 	<ul>
-	<li style="padding:6px"><a href="/file/all"><font color="black">Upload File</font></a></li>
-	<li style="padding:6px"><a href="/webservice"><font color="black">Web Services</font></a></li>
+	<li style="padding:6px"><a href="/elgg/file/all"><font color="black">Upload File</font></a></li>
+	<li style="padding:6px"><a href="/elgg/webservice"><font color="black">Web Services</font></a></li>
 	
 	</ul>
 	</li>
 	<li style="padding:5px"><font color="black">Analysis</font>
 	<ul>
-	<li style="padding:6px"><a href="/d3"><font color="black">Visualization</font></a></li>
-	<li style="padding:6px"><a href="/mapping"><font color="black">Mapping</font></a></li>
-	<li style="padding:6px"><a href="/table"><font color="black">Table</font></a></li>
+	<li style="padding:6px"><a href="/elgg/d3"><font color="black">Visualization</font></a></li>
+	<li style="padding:6px"><a href="/elgg/mapping"><font color="black">Mapping</font></a></li>
+	<li style="padding:6px"><a href="/elgg/table"><font color="black">Table</font></a></li>
 	</ul>
 	</li>
 
-	<li style="padding:5px"><a href="/photos/siteimagesall"><font color="black">Photos</font></a></li>
-	<li style="padding:5px"><a href="/manuscript"><font color="black">Manuscripts</font></a></li>
+	<li style="padding:5px"><a href="/elgg/photos/siteimagesall"><font color="black">Photos</font></a></li>
+	<li style="padding:5px"><a href="/elgg/manuscript"><font color="black">Manuscripts</font></a></li>
 	</ul>
 	</div>
 	</div>
