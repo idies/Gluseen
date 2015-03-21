@@ -8,6 +8,6 @@
   // Service credentials
   define("SERVICE_NAME", "gluseen");
   define("SERVICE_PASSWORD", "gluseen");
-  define("SERVICE_PROJECT", "Services");
+  define("SERVICE_PROJECT", "service");
 
 ?>
