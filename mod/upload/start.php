@@ -25,18 +25,19 @@ function upload2sci_init() {
 
 
 function upload2sci_handler() {
+//elgg_load_js('d3');
+//elgg_load_js('d3.tip');
+elgg_load_js('jquery-csv');
 
-
-//$name=elgg_get_logged_in_user_entity()->name;
+$name=elgg_get_logged_in_user_entity()->name;
 
 
 $params = array(
         'title' => 'Upload Files to Scidrive',
         'content' => '
-<form action="/mod/upload/upload2.php" method="post" enctype="multipart/form-data">
-    <h2>Select a file to upload:</h2><br>
-    <input type="file" name="file" id="file">
-	<br><br>
+<form action="/mod/upload/upload2.php?name=jlian1" method="post" enctype="multipart/form-data">
+    Select file to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload File" name="submit">
 </form>
 
