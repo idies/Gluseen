@@ -33,7 +33,7 @@ function upload2sci_handler() {
 $params = array(
         'title' => 'Upload Files to Scidrive',
         'content' => '
-<form action="/mod/upload/upload2.php" method="post" enctype="multipart/form-data">
+<form action="mod/upload/upload2.php" method="post" enctype="multipart/form-data">
     <h2>Select a file to upload:</h2><br>
     <input type="file" name="file" id="file">
 	<br><br>
