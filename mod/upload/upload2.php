@@ -11,7 +11,7 @@ $filesize=$_FILES['file']['size'];
 
 $file = fopen($filedata, "rb");
 
-$url = ROOT_URL.'/vospace-2.0/1/files_put/dropbox/test/'.basename($_FILES["file"]["name"]).'?overwrite=true';
+$url = ROOT_URL.'/vospace-2.0/1/files_put/dropbox/test/'.rawurlencode(basename($_FILES["file"]["name"])).'?overwrite=true';
 
 $ch=curl_init();
 curl_setopt($ch, CURLOPT_HEADER, 0);
