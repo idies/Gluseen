@@ -115,7 +115,6 @@ else
   $header_list = explode("\r\n", $header);
   foreach ($header_list as &$str)
   {
-    explode(':', $str, 2);
     list($key, $value) = array_pad(explode(':', $str, 2), 2, null);
     if ($key === "X-Subject-Token")
     {
