@@ -48,52 +48,52 @@ $url = ROOT_URL.'/keystone/v3/auth/tokens';
 $ch=curl_init(); 
 
 /*
-  curl_setopt($ch, CURLOPT_HEADER, 1);
-  curl_setopt($ch, CURLOPT_VERBOSE, 0);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_POST, true);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-  
-  // same as <input type="file" name="file_box">
+curl_setopt($ch, CURLOPT_HEADER, 1);
+curl_setopt($ch, CURLOPT_VERBOSE, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+
+// same as <input type="file" name="file_box">
 */
 
-  $post = array(
-    "auth"=> array(
-      "identity"=> array(
-        "methods"=> array(
-          "password"
-        ),
-        "password"=> array(
-          "user"=> array(
-            "domain"=> array(
-              "id"=>"default"
-            ),
-            "name"=> $username,
-            "password"=> $password
-          )
+$post = array(
+  "auth"=> array(
+    "identity"=> array(
+      "methods"=> array(
+        "password"
+      ),
+      "password"=> array(
+        "user"=> array(
+          "domain"=> array(
+            "id"=>"default"
+          ),
+          "name"=> $username,
+          "password"=> $password
         )
       )
     )
-  );
+  )
+);
+
+$data_string = json_encode($post);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_HEADER, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
   
-  $data_string = json_encode($post);
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-  curl_setopt($ch, CURLOPT_HEADER, true);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
-    
 /*
-  $response = curl_exec($ch);
-  echo $response;
-  list($header, $body) = explode("\r\n\r\n", $response, 2);
-  //echo $header;
-  echo "<br>";
-  $token=substr($header,140,32);
-  echo $token;
+$response = curl_exec($ch);
+echo $response;
+list($header, $body) = explode("\r\n\r\n", $response, 2);
+//echo $header;
+echo "<br>";
+$token=substr($header,140,32);
+echo $token;
 */
  
 $result = curl_exec($ch);
