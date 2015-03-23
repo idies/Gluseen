@@ -59,8 +59,8 @@ $ch=curl_init();
   // same as <input type="file" name="file_box">
 */
 
-    $post = array(
-      "auth"=> array(
+  $post = array(
+    "auth"=> array(
       "identity"=> array(
         "methods"=> array(
           "password"
