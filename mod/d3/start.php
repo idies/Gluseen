@@ -282,7 +282,7 @@ var tip = d3.tip()
   });
 
 
-$.post("mod/d3/read.php",{date:time,site:site,dateRange:dateRange},function(data1){
+$.post("mod/d3/read3.php",{date:time,site:site,dateRange:dateRange},function(data1){
 
 
 d3.csv(data1, type, function(data) {

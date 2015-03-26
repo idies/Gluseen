@@ -43,7 +43,7 @@ border: 1px solid black;
 	<li style="padding:5px"><a href="/elgg/blog/all"><font color="black">Blog</font></a></li>
 	<li style="padding:5px"><font color="black">Data</font>
 	<ul>
-	<li style="padding:6px"><a href="/elgg/file/all"><font color="black">Upload File</font></a></li>
+	<li style="padding:6px"><a href="/elgg/upload2sci"><font color="black">Upload File</font></a></li>
 	<li style="padding:6px"><a href="/elgg/webservice"><font color="black">Web Services</font></a></li>
 	
 	</ul>
