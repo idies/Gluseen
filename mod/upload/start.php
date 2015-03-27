@@ -66,7 +66,7 @@ var file = fileInput.files[0];
 		 processData: false,
 		 contentType: false,
         type: "POST",
-        url: "/mod/upload/upload2.php",
+        url: "/elgg/mod/upload/upload2.php",
         data: form_data,
          success: function (data) {
           // alert(data);
