@@ -192,7 +192,7 @@
 }
 
 .elgg-menu-site-default > li > a {
-	color: white;
+	color: black;
 }
 
 .elgg-menu-site > li > ul {

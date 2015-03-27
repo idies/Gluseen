@@ -22,7 +22,8 @@
 .elgg-page-default .elgg-page-header > .elgg-inner {
 	width: 990px;
 	margin: 0 auto;
-	height: 90px;
+	height: 185px;
+	
 }
 .elgg-page-default .elgg-page-body > .elgg-inner {
 	
@@ -71,7 +72,7 @@
 /***** PAGE HEADER ******/
 .elgg-page-header {
 	position: left;
-	background: #218c08 url(<?php echo elgg_get_site_url(); ?>_graphics/header_shadow.png) repeat-x bottom left;
+	background: #ffffff url(<?php echo elgg_get_site_url(); ?>_graphics/header_shadow.png) repeat-x bottom left;
 }
 .elgg-page-header > .elgg-inner {
 	position: relative;

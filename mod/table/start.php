@@ -43,8 +43,7 @@ function table_handler() {
 //elgg_load_js('d3.tip');
 elgg_load_js('jquery-csv');
 
-$data = file("mod/table/data.csv");
-echo $dataintext = implode("\n",$data);
+
 
 $params = array(
         'title' => 'Table Visualization',
@@ -73,18 +72,7 @@ td {
     });
 	});
 	
-	function tester()
-{
-var datevalue=document.getElementById("time").value;
-var siteID=document.getElementById("siteID").value;
-//var datevalue="3/24/2014";
-		$.post("mod/table/read.php",{date:datevalue,site:siteID},function(data){
-		$("#input3").val(data);
-		//alert (data);
-		});
 
-}
-	
 	
 
 
@@ -92,9 +80,9 @@ var siteID=document.getElementById("siteID").value;
 
 	function example(){
 	var datevalue=document.getElementById("time").value;
-var siteID=document.getElementById("siteID").value;
+var site=document.getElementById("site").value;
 
-		$.post("mod/table/read.php",{date:datevalue,site:siteID},function(data){
+		$.post("mod/table/read.php",{date:datevalue,site:site},function(data){
 		//$("#input3").val(data);
 		//alert (data);
 		
@@ -160,14 +148,12 @@ var siteID=document.getElementById("siteID").value;
 <option value="11/5/2013">11/5/2013</option>
 <option value="11/6/2013">11/6/2013</option>
 </select><br>
-<b>Site ID:</b> <select id="siteID">
-<option value="1">1</option>
-<option value="2">2</option>
+<b>City:</b> <select id="site">
+<option value="Baltimore">Baltimore</option>
+
 </select><br>
 <br>
-<!--
-<a href="javascript:tester();"><b>Load File</b></a>
- <textarea id="input3" style="height:150px;"></textarea>-->
+
 <input id=run3 type=button value="Run" />
 		<div class=result>
       <table id=result1></table>
