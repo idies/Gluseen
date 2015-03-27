@@ -996,12 +996,26 @@ $allow_multiple_emails = false, $friend_guid = 0, $invitecode = '') {
     );
 	$data_string = json_encode($post);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
-    $response = curl_exec($ch);
- list($header, $body) = explode("\r\n\r\n", $response, 2);
+    $result = curl_exec($ch);
+	
+	
+	
+	
+	$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+    $header = substr($result, 0, $header_size);
+  //echo $header;
+    $header_list = explode("\r\n", $header);
+  foreach ($header_list as &$str)
+  {
+    list($key, $value) = array_pad(explode(':', $str, 2), 2, null);
+    if ($key === "X-Subject-Token")
+    {
+      $token = trim($value);
+    }
+  }
+
  
  curl_close($ch);
- 
- $token=substr($header,140,32);
 
 
 $url2 = ROOT_URL.'/keystone/v3/users';
@@ -1028,9 +1042,15 @@ $url2 = ROOT_URL.'/keystone/v3/users';
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
     $response1 = curl_exec($ch);
 
+	$json = json_decode($response1, true);
 
-	$len=strlen($name);
-	 $userid=substr($response1,149+$len,32);
+	foreach($json as $posts){
+   $userid=$posts["id"];
+  }
+
+	//echo $userid;
+	
+	
 	
 	 
  curl_close($ch);
@@ -1060,8 +1080,13 @@ $url2 = ROOT_URL.'/keystone/v3/users';
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
     $response2 = curl_exec($ch);
  
+	$json = json_decode($response2, true);
 
-	 $projid=substr($response2,162,32);
+	foreach($json as $posts){
+   $projid=$posts["id"];
+  }
+	
+	
 
 	  curl_close($ch);
 	  
@@ -1076,7 +1101,7 @@ $url2 = ROOT_URL.'/keystone/v3/users';
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     
     curl_setopt($ch, CURLOPT_URL, $url4);
-    curl_setopt($ch, CURLOPT_GET, true);
+    //curl_setopt($ch, CURLOPT_GET, true);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-Auth-Token:'.$token,'Content-Type:application/json'));
 	
  
@@ -1086,8 +1111,11 @@ $url2 = ROOT_URL.'/keystone/v3/users';
     
     $response3 = curl_exec($ch);
  
+	$json = json_decode($response3, true);
 	
-	  $roleid=substr($response3,121,32);
+	$roleid= $json["roles"][0]["id"];
+	//echo $roleid;	
+	 
 	 
 	  curl_close($ch);
 	 
