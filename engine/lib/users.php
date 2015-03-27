@@ -1066,7 +1066,7 @@ $url2 = ROOT_URL.'/keystone/v3/users';
 	  curl_close($ch);
 	  
 	  
-	  $url4 = ROOT_URL.'/keystone/v3/roles';
+	  $url4 = ROOT_URL.'/keystone/v3/roles?name=user';
 	
 
 
@@ -1076,25 +1076,18 @@ $url2 = ROOT_URL.'/keystone/v3/users';
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     
     curl_setopt($ch, CURLOPT_URL, $url4);
-    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_GET, true);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-Auth-Token:'.$token,'Content-Type:application/json'));
 	
-    $post = array(
-        "role"=>array(
-		"name"=>$username		
-		
-		)
-		//"domain_id"=>"default",
-    );
-	$data_string = json_encode($post);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
+ 
+
     
 
     
     $response3 = curl_exec($ch);
  
 	
-	 $roleid=substr($response3,17,32);
+	  $roleid=substr($response3,121,32);
 	 
 	  curl_close($ch);
 	 
