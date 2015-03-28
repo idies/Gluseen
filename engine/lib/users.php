@@ -1034,7 +1034,8 @@ $url2 = ROOT_URL.'/keystone/v3/users';
     $post = array(
         "user"=>array(
 		"name"=>$username,		
-		"password"=>$password
+		"password"=>$password,
+		"email"=>$email
 		)
 		//"domain_id"=>"default",
     );
