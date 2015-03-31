@@ -1142,8 +1142,126 @@ $url2 = ROOT_URL.'/keystone/v3/users';
     $response4 = curl_exec($ch);
  
 	echo $response4;
+	curl_close($ch);
 	
+	$url6 = ROOT_URL.'/keystone/v3/auth/tokens';
+	$ch=curl_init(); 
+
+    $post = array(
+      "auth"=> array(
+        "identity"=> array(
+          "methods"=> array(
+            "password"
+          ),
+          "password"=> array(
+            "user"=> array(
+              "domain"=> array(
+                "id"=>"default"
+              ),
+              "name"=> $username,
+              "password"=> $password
+            )
+          )
+        ),
+        "scope"=> array(
+          "project"=> array(
+            "name"=> $username,
+            "domain"=> array(
+              "id"=> "default"
+            )
+          )
+        )
+      )      
+    );
+  
+  $data_string = json_encode($post);
+  curl_setopt($ch, CURLOPT_URL, $url6);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($ch, CURLOPT_HEADER, true);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
+    
+
+ 
+$result = curl_exec($ch);
+$info = curl_getinfo($ch);
+$http_code = (int) $info['http_code'];
+
+if ($http_code !== 201)
+{
+  // throw new Exception("Could not obtain token.");
+}
+else
+{
+  /* Retrieve token id from header by parsing header lines
+  one by one. We need the X-Subject-Token field. */
+  $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+  $header = substr($result, 0, $header_size);
+  $header_list = explode("\r\n", $header);
+  foreach ($header_list as &$str)
+  {
+    list($key, $value) = array_pad(explode(':', $str, 2), 2, null);
+    if ($key === "X-Subject-Token")
+    {
+      $token_user = trim($value);
+    }
+  }
+}   
+	curl_close($ch);	
 	
+	$container_name='Gluseen';
+	$url7 = ROOT_URL.'/vospace-2.0/nodes/'.$container_name;
+	
+	$ch=curl_init();
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_VERBOSE, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    curl_setopt($ch, CURLOPT_URL, $url7);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+	
+	$xml_data = '<vos:node xmlns:xsi="http://www.w3.org/2001/thisSchema-instance" xsi:type="vos:ContainerNode" xmlns:vos="http://www.ivoa.net/xml/VOSpace/v2.0" uri="vos://scitest09!vospace//'.$container_name.'">
+	<vos:properties/>
+	<vos:accepts/>
+	<vos:provides/>
+	<vos:capabilities/>
+</vos:node>
+';
+			
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-Auth-Token:'.$token_user,'Content-Type:application/xml'));
+	
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_data);
+    
+	$response5 = curl_exec($ch);
+	
+	curl_close($ch); 
+ 
+	//echo $response5;
+	
+	$url8 = ROOT_URL.'/vospace-2.0/1/account/service/gluseenprocessor';
+	$ch=curl_init(); 
+
+    $post = array(
+      "connectionUrl"=>"jdbc:sqlserver://sciserver04.pha.jhu.edu:1433;databaseName=EarthSciTest_scitest02;integratedSecurity=false;user=gluseen;password=CBwGPm9v;",
+  "tableName"=>"dbo.DecompSample",
+  "containers"=>"/".container_name
+  
+
+    );
+  
+	$data_string = json_encode($post);
+	curl_setopt($ch, CURLOPT_URL, $url8);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
+    
+
+ 
+	$result = curl_exec($ch);
+	curl_close($ch); 
 
 	access_show_hidden_entities($access_status);
 

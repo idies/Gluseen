@@ -22,7 +22,7 @@
 .elgg-page-default .elgg-page-header > .elgg-inner {
 	width: 990px;
 	margin: 0 auto;
-	height: 195px;
+	height: 203px;
 	
 }
 .elgg-page-default .elgg-page-body > .elgg-inner {

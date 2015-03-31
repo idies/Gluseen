@@ -9,7 +9,7 @@
 	Custom Index
 ********************************/
 .custom-index {
-	padding: 10px 0;
+	padding: 0px 0;
 }
 .elgg-module-highlight {
 	-webkit-box-shadow: 1px 1px 5px #CCC;
