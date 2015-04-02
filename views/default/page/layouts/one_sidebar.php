@@ -22,7 +22,7 @@ $nav = elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
 
 ?>
 <?php
- $name=elgg_get_logged_in_user_entity()->name;
+ $name=elgg_get_logged_in_user_entity()->username;
  ?>
 <style type="text/css">
 .leftbar{
@@ -45,13 +45,15 @@ border: 1px solid black;
 <ul >
 <li style="padding:5px"><a href="/elgg"><font color="black">Home</font></a></li>
 <li style="padding:5px"><a href="/elgg/activity"><font color="black">Activity</font></a></li>
-	<li style="padding:5px"><a href="/elgg/members"><font color="black">Collaborations</font></a></li>
+	<li style="padding:5px"><a href="/elgg/friends/<?php echo $name?>"><font color="black">Collaborators</font></a></li>
 	<li style="padding:5px"><a href="/elgg/groups/all"><font color="black">Groups</font></a></li>
 	
 	<li style="padding:5px"><a href="/elgg/blog/all"><font color="black">Blog</font></a></li>
+	<li style="padding:5px"><a href="/elgg/messages/inbox/<?php echo $name?>"><font color="black">Mails</font></a></li>
 	<li style="padding:5px"><font color="black">Data</font>
 	<ul>
 	<li style="padding:6px"><a href="/elgg/upload2sci"><font color="black">Upload Data</font></a></li>
+	<li style="padding:6px"><a href="/elgg/uploadStatus"><font color="black">Upload Status</font></a></li>
 	<li style="padding:6px"><a href="/elgg/webservice"><font color="black">Web Services</font></a></li>
 	
 	</ul>
@@ -65,7 +67,7 @@ border: 1px solid black;
 	</li>
 
 	<li style="padding:5px"><a href="/elgg/photos/siteimagesall"><font color="black">Photos</font></a></li>
-	<li style="padding:5px"><a href="/elgg/manuscript"><font color="black">Manuscripts</font></a></li>
+	<li style="padding:5px"><a href="/elgg/file"><font color="black">Files</font></a></li>
 	</ul>
 	</div>
 	</div>
