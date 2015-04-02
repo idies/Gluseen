@@ -8,7 +8,7 @@ $filename = $_FILES['file']['name'];
 $filedata = $_FILES['file']['tmp_name'];
 $filesize=$_FILES['file']['size'];
 $file = fopen($filedata, "rb");
-$url = ROOT_URL.'/vospace-2.0/1/files_put/dropbox/test/'.rawurlencode(basename($_FILES["file"]["name"])).'?overwrite=true';
+$url = ROOT_URL.'/vospace-2.0/1/files_put/dropbox/Gluseen/'.rawurlencode(basename($_FILES["file"]["name"])).'?overwrite=true';
 $ch=curl_init();
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_VERBOSE, 1);

@@ -1245,7 +1245,7 @@ else
     $post = array(
       "connectionUrl"=>"jdbc:sqlserver://sciserver04.pha.jhu.edu:1433;databaseName=EarthSciTest_scitest02;integratedSecurity=false;user=gluseen;password=CBwGPm9v;",
   "tableName"=>"dbo.DecompSample",
-  "containers"=>"/".container_name
+  "containers"=>array("/".$container_name)
   
 
     );
@@ -1255,11 +1255,9 @@ else
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-Auth-Token: ".$token_user,"Content-Type: application/json"));
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
     
-
- 
 	$result = curl_exec($ch);
 	curl_close($ch); 
 
