@@ -18,7 +18,7 @@
  $data = file_get_contents("http://dsa002.pha.jhu.edu/EarthScience/EarthScience/getData?Query=select*%20from%20site&format=json);
 //echo $dataintext = implode("\n",$data);
 echo $data */
-
+$url=elgg_get_site_url (   $site_guid = 0  );
 		
 		
 php?>
@@ -31,8 +31,12 @@ php?>
 //var src1 = 'https://developers.google.com/maps/tutorials/kml/westcampus.kml';
 var src2 = 'http://pages.towson.edu/mmcguire/csn4se/sites.kml';
 //var src3 = 'http://yuting.a2hosted.com/KMLPHOTO.kml';
-var src3 = 'http://yutingsite.com/baltimoresite.kml';
-
+var url="<?php echo $url?>";
+var src3 = 'http://yutingsite.com/kml/baltimoresite.kml?key=' + Math.random();
+//var src3 = url+'/baltimoreKML.kml?key=' + Math.random();
+//var src3 = _SERVER["DOCUMENT_ROOT"].'/baltimoreKML.kml?key=' + Math.random();
+//alert(url);
+//alert("hhhhhhhhhh");
 function initializeKML() {
 
 
@@ -43,6 +47,7 @@ function initializeKML() {
   });
   google.maps.event.addDomListener(window, 'load', initialize);
   loadKmlLayer(src2, map);
+  historicalOverlay.setMap(null);
 }
 
 function loadKmlLayer(src, map) {
