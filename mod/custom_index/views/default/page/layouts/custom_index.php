@@ -41,7 +41,7 @@ border: 1px solid black;
 	<li style="padding:5px"><a href="/elgg/groups/all"><font color="black">Groups</font></a></li>
 	
 	<li style="padding:5px"><a href="/elgg/blog/all"><font color="black">Blog</font></a></li>
-	<li style="padding:5px"><a href="/elgg/messages/inbox/<?php echo $name?>"><font color="black">Mails</font></a></li>
+	<li style="padding:5px"><a href="/elgg/messages/inbox/<?php echo $name?>"><font color="black">Messages</font></a></li>
 	<li style="padding:5px"><font color="black">Data</font>
 	<ul>
 	<li style="padding:6px"><a href="/elgg/upload2sci"><font color="black">Upload Data</font></a></li>
