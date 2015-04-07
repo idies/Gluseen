@@ -33,7 +33,7 @@ function upload2sci_handler() {
 $params = array(
         'title' => 'Upload Data to GLUSEEN Database:',
         'content' => '
-	<p>Use the following template to upload your data to the integrated decomposition database.  The template can be found here:<br> <a href="/mod/upload/DecompSampleTemplate.csv" target="_blank">DecompSampleTemplate.csv</a>  </p>
+	<p>Use the following template to upload your data to the integrated decomposition database.  The template can be found here:<br> <a href="/elgg/mod/upload/DecompSampleTemplate.csv" target="_blank">DecompSampleTemplate.csv</a>  </p>
 
 
 <form action="" id="form" method="post" enctype="multipart/form-data">
