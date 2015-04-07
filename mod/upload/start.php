@@ -31,12 +31,9 @@ function upload2sci_handler() {
 
 
 $params = array(
-        'title' => 'Upload Files to Scidrive',
+        'title' => 'Upload Data to GLUSEEN Database:',
         'content' => '
-		<!--
-<form action="/mod/upload/upload2.php" method="post" enctype="multipart/form-data">
--->
-
+	<p>Use the following template to upload your data to the integrated decomposition database.  The template can be found here:<br> <a href="/mod/upload/DecompSampleTemplate.csv" target="_blank">DecompSampleTemplate.csv</a>  </p>
 
 
 <form action="" id="form" method="post" enctype="multipart/form-data">
@@ -46,7 +43,8 @@ $params = array(
 	<br><br>
     <input type="button"  id="bt" value="Upload File" name="upload">
 </form>
-
+<br>
+<p>Once you have uploaded your file, you can check the status of your upload by clicking on the Upload Status link in the left menu.</p>
 	<div class="view">
 	
 	
