@@ -47,7 +47,7 @@ function d3_page_handler() {
 
 
 
-$response = file_get_contents('http://dsa002.pha.jhu.edu/EarthScience/EarthScience/getData?Query=select%20*%20from%20DecompSample%20where%20CollectionDate%20=%20%273/24/2014%27&format=csv');
+//$response = file_get_contents('http://dsa002.pha.jhu.edu/EarthScience/EarthScience/getData?Query=select%20*%20from%20DecompSample%20where%20CollectionDate%20=%20%273/24/2014%27&format=csv');
 
 //echo $response;
 
@@ -184,12 +184,19 @@ $params = array(
 <input type="radio" name="varation" id="habitat" value="habitat">Habitat
 <br>
 
-<b>City:</b> <select id="siteID">
-<option value="Baltimore">Baltimore</option>
+<b>City:</b> 
+<form>
+<select id="siteID">
 
-</select><br>
 
-<b>Habitat Type:</b> <select id="habitatID">
+
+</select>
+</form>
+<br>
+
+<b>Habitat Type:</b> 
+
+<select id="habitatID">
 <option value="Forest">Forest</option>
 <option value="Grass">Grass</option>
 <option value="Disturbed">Disturbed</option>
@@ -202,7 +209,7 @@ $params = array(
 -->
 <input type="button" value="Submit" onclick="show()">
 
-</form>
+
 <div class="view">
 	
 	<svg class="chart"></svg>
@@ -210,7 +217,46 @@ $params = array(
 
 		
 		<script type="text/javascript">
-		
+
+$(document).ready(function () {
+     $.ajax({
+		 processData: false,
+		 contentType: false,
+        type: "GET",
+        url: "/elgg/mod/d3/query.php",
+        data: "",
+         success: function (data) {
+		 var tmp = data.split("\n");
+
+        var selectValues={};
+
+for (i=1;i<tmp.length;i++){
+if (tmp[i]!="")
+{
+var str=tmp[i];
+var ss=str.substring(1,str.length-1);
+selectValues[i]=ss;
+}
+
+}
+//alert(selectValues);
+
+$.each(selectValues, function(key, value) {   
+     $("#siteID")
+          .append($("<option>", { value : key })
+          .text(value)
+		  .val(value)
+		  ); 
+});
+
+		},
+      });
+
+
+
+		//selectValues = { "1": "test 1", "2": "test 2" };
+
+});
 
 
 
