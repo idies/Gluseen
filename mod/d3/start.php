@@ -192,15 +192,16 @@ $params = array(
 
 </select>
 </form>
-<br>
 
 <b>Habitat Type:</b> 
-
+<form>
 <select id="habitatID">
 <option value="Forest">Forest</option>
 <option value="Grass">Grass</option>
 <option value="Disturbed">Disturbed</option>
-</select><br>
+</select>
+</form>
+<br>
 <!--
 <b>Variable:</b><br>
 <input type="radio" name="varation" id="clean" value="cleanWeight">DeploymentWeight<br>
