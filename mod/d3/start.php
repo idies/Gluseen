@@ -254,7 +254,7 @@ $.each(selectValues, function(key, value) {
 
 
 
-		//selectValues = { "1": "test 1", "2": "test 2" };
+	
 
 });
 
