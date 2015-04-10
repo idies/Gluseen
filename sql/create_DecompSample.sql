@@ -6,9 +6,9 @@ create table DecompSample(
 	PlotID int not null,
 	TeabagID int null,
 	DeploymentDate date not null,  --yyyy-mm-dd
-	DeploymentWeight float not null,
+	DeploymentWeight decimal(9,3) not null,
 	CollectionDate date not null,  --yyyy-mm-dd
-	CollectionWeight float null,
+	CollectionWeight decimal (9,3) null,
 	Comment varchar(2000) null, --quoted string
 	GridX int not null,
 	GridY int not null,
