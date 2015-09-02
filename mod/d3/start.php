@@ -169,16 +169,17 @@ $params = array(
     
     </h2>
 	
-
+<!--
 <b>Deployment Date:</b> <select id="time">
 <option value="11/5/2013">11/5/2013</option>
 <option value="11/6/2013">11/6/2013</option>
 </select><br>
+
 <b>Sample Duration (Days):</b><select id="dateRange">
 <option value="139">139</option>
 <option value="140">140</option>
 </select><br>
-
+-->
 <b>Group by:</b><br>
 <input type="radio" name="varation" id="site" value="site">City<br>
 <input type="radio" name="varation" id="habitat" value="habitat">Habitat
@@ -192,7 +193,12 @@ $params = array(
 
 </select>
 </form>
-
+<b>Habitat Type:</b> 
+<form>
+<select id="habitatID">
+</select>
+</form>
+<!--
 <b>Habitat Type:</b> 
 <form>
 <select id="habitatID">
@@ -201,8 +207,9 @@ $params = array(
 <option value="Disturbed">Disturbed</option>
 </select>
 </form>
+
 <br>
-<!--
+
 <b>Variable:</b><br>
 <input type="radio" name="varation" id="clean" value="cleanWeight">DeploymentWeight<br>
 <input type="radio" name="varation" id="pct" value="pctDecrease">pctDecrease
@@ -224,7 +231,7 @@ $(document).ready(function () {
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "/elgg/mod/d3/query.php",
+        url: "/mod/d3/query.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
@@ -255,11 +262,49 @@ $.each(selectValues, function(key, value) {
 
 
 
-	
+		//selectValues = { "1": "test 1", "2": "test 2" };
 
 });
 
+$(document).ready(function () {
+     $.ajax({
+		 processData: false,
+		 contentType: false,
+        type: "GET",
+        url: "/mod/d3/query2.php",
+        data: "",
+         success: function (data) {
+		 var tmp = data.split("\n");
 
+        var selectValues={};
+
+for (i=1;i<tmp.length;i++){
+if (tmp[i]!="")
+{
+var str=tmp[i];
+var ss=str.substring(1,str.length-1);
+selectValues[i]=ss;
+}
+
+}
+//alert(selectValues);
+
+$.each(selectValues, function(key, value) {   
+     $("#habitatID")
+          .append($("<option>", { value : key })
+          .text(value)
+		  .val(value)
+		  ); 
+});
+
+		},
+      });
+
+
+
+		//selectValues = { "1": "test 1", "2": "test 2" };
+
+});
 
 
 		function show(){
@@ -267,8 +312,8 @@ $.each(selectValues, function(key, value) {
 		//document.getElementById("view").style.display="";
 		var site=document.getElementById("siteID").value;
 		var habitat=document.getElementById("habitatID").value;
-		var time=document.getElementById("time").value;
-		var dateRange=document.getElementById("dateRange").value;
+		
+		//var dateRange=document.getElementById("dateRange").value;
 			
 	if (document.getElementById("site").checked==true)
 	{
@@ -329,7 +374,7 @@ var tip = d3.tip()
   });
 
 
-$.post("mod/d3/read3.php",{date:time,site:site,dateRange:dateRange},function(data1){
+$.post("mod/d3/read3.php",{site:site},function(data1){
 
 
 d3.csv(data1, type, function(data) {
@@ -534,7 +579,7 @@ var tip = d3.tip()
   });
 
 
-$.post("mod/d3/read2.php",{date:time,habitat:habitat,dateRange:dateRange},function(data1){
+$.post("mod/d3/read2.php",{habitat:habitat},function(data1){
 
 
 d3.csv(data1, type, function(data) {

@@ -20,7 +20,7 @@ $token= $_COOKIE['token'];
 
    $post = array(
     
- "Query"=> "select Name from Site"
+ "Query"=> "select HabitatType from Habitat"
 
  
   );

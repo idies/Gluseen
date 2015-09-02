@@ -8,10 +8,10 @@ function addDayswithdate($date,$days){
 
 }
 
-$date=$_POST['date'];
+//$date=$_POST['date'];
 $habitat=$_POST['habitat'];
 $dateRange=$_POST['dateRange'];
-$cdate=addDayswithdate($date,$dateRange);
+//$cdate=addDayswithdate($date,$dateRange);
 
 
 
@@ -32,7 +32,8 @@ $token= $_COOKIE['token'];
     // same as <input type="file" name="file_box">
    $post = array(
     
- "Query"=> "select h.HabitatType, s.TeabagID, ss.SiteID, s.DeploymentWeight, s.CollectionWeight,s.DeploymentDate,s.CollectionDate,p.PlotID,h.HabitatID,p.Name,ss.Name as SiteName from DecompSample AS s, Plot AS p, Habitat AS h ,Site as ss WHERE s.PlotID = p.PlotID AND p.HabitatID = h.HabitatID AND p.SiteID=ss.SiteID AND s.DeploymentDate ='".$date."' and s.CollectionDate ='".$cdate."' and h.HabitatType='".$habitat."'"
+// "Query"=> "select h.HabitatType, s.TeabagID, ss.SiteID, s.DeploymentWeight, s.CollectionWeight,s.DeploymentDate,s.CollectionDate,p.PlotID,h.HabitatID,p.Name,ss.Name as SiteName from DecompSample AS s, Plot AS p, Habitat AS h ,Site as ss WHERE s.PlotID = p.PlotID AND p.HabitatID = h.HabitatID AND p.SiteID=ss.SiteID AND s.DeploymentDate ='".$date."' and s.CollectionDate ='".$cdate."' and h.HabitatType='".$habitat."'"
+   "Query"=> "select h.HabitatType, s.TeabagID, ss.SiteID, s.DeploymentWeight, s.CollectionWeight,s.DeploymentDate,s.CollectionDate,p.PlotID,h.HabitatID,p.Name,ss.Name as SiteName from DecompSample AS s, Plot AS p, Habitat AS h ,Site as ss WHERE s.PlotID = p.PlotID AND p.HabitatID = h.HabitatID AND p.SiteID=ss.SiteID and h.HabitatType='".$habitat."'"
   );
 	$data_string = json_encode($post);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
