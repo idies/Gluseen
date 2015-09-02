@@ -25,7 +25,8 @@ $token= $_COOKIE['token'];
     // same as <input type="file" name="file_box">
    $post = array(
 	"Query"=>"select s.DecompSampleID, s.PlotID,p.Name as PlotName,s.TeabagID,s.DeploymentDate,s.CollectionDate,s.DeploymentWeight,s.CollectionWeight,ss.Name as SiteName from DecompSample as s,Plot as p, Site as ss where s.PlotID=p.PlotID and p.SiteID=ss.SiteID and s.DeploymentDate='".$date."' and ss.Name='".$site."'"
-	
+	//"Query"=>"select * from Plot"
+	//	"Query"=>"select * from DecompSample as s,Plot as p, Site as ss where s.PlotID=p.PlotID and p.SiteID=ss.SiteID and s.DeploymentDate='".$date."' and ss.Name='".$site."'"
 	);
 	$data_string = json_encode($post);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 

@@ -63,7 +63,48 @@ td {
   padding:5px !important;
 }
 </style>
-		<script>
+	<script type="text/javascript">
+
+$(document).ready(function () {
+     $.ajax({
+		 processData: false,
+		 contentType: false,
+        type: "GET",
+        url: "/mod/table/query.php",
+        data: "",
+         success: function (data) {
+		 var tmp = data.split("\n");
+
+        var selectValues={};
+
+for (i=1;i<tmp.length;i++){
+if (tmp[i]!="")
+{
+var str=tmp[i];
+var ss=str.substring(1,str.length-1);
+selectValues[i]=ss;
+}
+
+}
+//alert(selectValues);
+
+$.each(selectValues, function(key, value) {   
+     $("#site")
+          .append($("<option>", { value : key })
+          .text(value)
+		  .val(value)
+		  ); 
+});
+
+		},
+      });
+
+
+
+		//selectValues = { "1": "test 1", "2": "test 2" };
+
+});
+
 		$(document).ready(function() {
     //example();
 	 $("#run3").bind("click", function() {
@@ -79,10 +120,10 @@ td {
 
 
 	function example(){
-	var datevalue=document.getElementById("time").value;
+	var date=document.getElementById("time").value;
 var site=document.getElementById("site").value;
-
-		$.post("mod/table/read.php",{date:datevalue,site:site},function(data){
+//alert(site);
+		$.post("mod/table/read.php",{date:date,site:site},function(data){
 		//$("#input3").val(data);
 		//alert (data);
 		
@@ -148,10 +189,12 @@ var site=document.getElementById("site").value;
 <option value="11/5/2013">11/5/2013</option>
 <option value="11/6/2013">11/6/2013</option>
 </select><br>
-<b>City:</b> <select id="site">
-<option value="Baltimore">Baltimore</option>
+<b>City:</b> 
+<form>
+<select id="site">
 
-</select><br>
+</select>
+</form>
 <br>
 
 <input id=run3 type=button value="Run" />
