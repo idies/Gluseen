@@ -70,7 +70,7 @@ $(document).ready(function () {
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "/mod/table/query.php",
+        url: "mod/table/query.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");

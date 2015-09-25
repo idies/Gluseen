@@ -69,7 +69,7 @@ $params = array(
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "/mod/insert/queryH.php",
+        url: "mod/insert/queryH.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
@@ -109,7 +109,7 @@ $.each(selectValues, function(key, value) {
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "/mod/insert/queryS.php",
+        url: "mod/insert/queryS.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");

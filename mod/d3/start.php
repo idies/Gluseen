@@ -231,7 +231,7 @@ $(document).ready(function () {
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "/mod/d3/query.php",
+        url: "mod/d3/query.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
@@ -271,7 +271,7 @@ $(document).ready(function () {
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "/mod/d3/query2.php",
+        url: "mod/d3/query2.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
