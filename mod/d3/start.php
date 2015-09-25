@@ -287,7 +287,7 @@ selectValues[i]=ss;
 }
 
 }
-//alert(selectValues);
+
 
 $.each(selectValues, function(key, value) {   
      $("#habitatID")

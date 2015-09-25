@@ -1,6 +1,6 @@
 <?php
 
-$date=$_POST['date'];
+
 $site=$_POST['site'];
 //$data = file_get_contents("http://dsa002.pha.jhu.edu/EarthScience/EarthScience/getData?Query=select%20*%20from%20DecompSample%20where%20DeploymentDate%20=%27".$date."%27and%20SiteID=%27".$site."%27&format=csv");
 //echo $dataintext = implode("\n",$data);
@@ -24,8 +24,8 @@ $token= $_COOKIE['token'];
 	
     // same as <input type="file" name="file_box">
    $post = array(
-	"Query"=>"select s.DecompSampleID, s.PlotID,p.Name as PlotName,s.TeabagID,s.DeploymentDate,s.CollectionDate,s.DeploymentWeight,s.CollectionWeight,ss.Name as SiteName from DecompSample as s,Plot as p, Site as ss where s.PlotID=p.PlotID and p.SiteID=ss.SiteID and s.DeploymentDate='".$date."' and ss.Name='".$site."'"
-	//"Query"=>"select * from Plot"
+	"Query"=>"select s.DecompSampleID, s.PlotID,p.Name as PlotName,s.TeabagID,s.DeploymentDate,s.CollectionDate,s.DeploymentWeight,s.CollectionWeight,ss.Name as SiteName from DecompSample as s,Plot as p, Site as ss where s.PlotID=p.PlotID and p.SiteID=ss.SiteID and ss.Name='".$site."'"
+	//"Query"=>"select * from Site"
 	//	"Query"=>"select * from DecompSample as s,Plot as p, Site as ss where s.PlotID=p.PlotID and p.SiteID=ss.SiteID and s.DeploymentDate='".$date."' and ss.Name='".$site."'"
 	);
 	$data_string = json_encode($post);

@@ -120,10 +120,10 @@ $.each(selectValues, function(key, value) {
 
 
 	function example(){
-	var date=document.getElementById("time").value;
+
 var site=document.getElementById("site").value;
 //alert(site);
-		$.post("mod/table/read.php",{date:date,site:site},function(data){
+		$.post("mod/table/read.php",{site:site},function(data){
 		//$("#input3").val(data);
 		//alert (data);
 		
@@ -185,11 +185,8 @@ var site=document.getElementById("site").value;
 </script>
 
 
-<b>Deployment Date:</b> <select id="time">
-<option value="11/5/2013">11/5/2013</option>
-<option value="11/6/2013">11/6/2013</option>
-</select><br>
-<b>City:</b> 
+
+<b>Site:</b> 
 <form>
 <select id="site">
 

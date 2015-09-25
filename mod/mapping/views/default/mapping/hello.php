@@ -27,7 +27,7 @@ php?>
 
 
 var map;
-
+var kmlLayer;
 //var src1 = 'https://developers.google.com/maps/tutorials/kml/westcampus.kml';
 //var src2 = 'http://pages.towson.edu/mmcguire/csn4se/sites.kml';
 //var src3 = 'http://yuting.a2hosted.com/KMLPHOTO.kml';
@@ -46,15 +46,18 @@ function initializeKML() {
     mapTypeId: google.maps.MapTypeId.TERRAIN
   });
   google.maps.event.addDomListener(window, 'load', initialize);
-  loadKmlLayer(src2, map);
+  //loadKmlLayer(src2, map);
   historicalOverlay.setMap(null);
+  
 }
 
 function loadKmlLayer(src, map) {
-  var kmlLayer = new google.maps.KmlLayer(src, 
-    { suppressInfoWindows: true,
+   kmlLayer = new google.maps.KmlLayer(src, 
+    { suppressInfoWindows: false,
+      preserveViewport: true, //map isn't centered and zoomed
             map: map }
   );
+  
   google.maps.event.addListener(kmlLayer, 'click', function(kmlEvent) {
   showInContentWindow(kmlEvent.latLng, kmlEvent.featureData.infoWindowHtml);
  
@@ -81,25 +84,30 @@ function showInContentWindow(position, text) {
 }
 
 function loadLatLng(map, index){
+   
 switch (index) {
 
     case 1: 
-       // map.panTo(new google.maps.LatLng(39.2833, -76.6167)); 
-		//map.setZoom(9);
-		loadKmlLayer(src3, map);
-       // initializeKML()
+        map.panTo(new google.maps.LatLng(39.2833, -76.6167)); 
+        map.setZoom(8);
+        loadKmlLayer(src3, map);
+	
 		break; 
     case 2:
+
         map.panTo(new google.maps.LatLng(47.4338, 19.244)); 
-		map.setZoom(9);
+		    map.setZoom(8);
+        loadKmlLayer(src3, map);
         break; 
 	case 3:
 		map.panTo(new google.maps.LatLng(60.1733244, 24.9410248)); 
 		map.setZoom(7);
+    loadKmlLayer(src3, map);
         break; 
 	case 4:
 		map.panTo(new google.maps.LatLng(-26.7145297, 27.0970475)); 
-		map.setZoom(9);
+		map.setZoom(8);
+    loadKmlLayer(src3, map);
         break; 
        
     default:
