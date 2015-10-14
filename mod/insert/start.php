@@ -51,13 +51,10 @@ $params = array(
 		<select id="habitatID">
         </select>
 		<br>
-		<button>Insert</button>
+		<input id=run3 type=button value="Insert" />
 		</form>
 		
-	<div class="view">
-	
-	
-	</div>
+
 
  
 	
@@ -69,7 +66,7 @@ $params = array(
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "mod/insert/queryH.php",
+        url: "/mod/insert/queryH.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
@@ -85,7 +82,7 @@ selectValues[i]=ss;
 }
 
 }
-//alert(selectValues);
+
 
 $.each(selectValues, function(key, value) {   
      $("#habitatID")
@@ -98,10 +95,8 @@ $.each(selectValues, function(key, value) {
 		},
       });
 
-
-
-		//selectValues = { "1": "test 1", "2": "test 2" };
-
+	
+	  
 });
 
 	$(document).ready(function () {
@@ -109,7 +104,7 @@ $.each(selectValues, function(key, value) {
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "mod/insert/queryS.php",
+        url: "/mod/insert/queryS.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
@@ -140,32 +135,145 @@ $.each(selectValues, function(key, value) {
 
 
 
-		//selectValues = { "1": "test 1", "2": "test 2" };
 
 });
 
 
 
- $("button").click(function(){
-	 	
-	var pid=document.getElementById("pid").value;
+	$(document).ready(function() {
+				
+
+    
+	 $("#run3").bind("click", function() {
+     
+      example();
+    });
+	var data2=[];
+	$("#run").bind("click", function() {
+	upload();
+
+    });
+	});
+	
+var data2=[];
+	function upload(){
+	
 	var sname=document.getElementById("sname").value;
 	var pname=document.getElementById("pname").value;
 	var plat=document.getElementById("plat").value;
 	var plon=document.getElementById("plon").value;
-	var hid=document.getElementById("habitatID").value;
-	 alert(hid);
-        $.post("mod/insert/add.php",{sname:sname,pname:pname,plat:plat, plon:plon, hid:hid},function(data){
-            alert(data);
-			 $(".view").html(data);
-        });
-		
-		
+	var habitatID=document.getElementById("habitatID").value;
 	
-		
-    });
-	
+	var flag=0; 	
+	if (pname == null || pname == "") {
+    //    alert("Plot Name must be filled out");
+        flag=1;
+    }
+	if (plat == null || plat == "") {
+     //   alert("Plot Latitude must be filled out");
+        flag=1;
+    }
+	if (plon == null || plon == "") {
+    //    alert("Plot Longitude must be filled out");
+        flag=1;
+    }
+	if (flag==0)
+	{
 
+ var newdata="";   
+for (i=0;i<data2.length;i++){
+var strdata=data2[i].toString();
+var strdata=strdata.concat(";")
+newdata=newdata.concat(strdata);
+}
+	//alert(newdata);
+      		$.ajax({
+  type: "POST",
+  url: "/mod/insert/upload.php",
+  data: {data:newdata}, 
+  success: function (data) {
+           $(".view").html(data);
+		  
+         }, 
+});
+}
+else
+	alert("Please Refill the form!");
+	}
+	
+	function example(){
+		
+	var sname=document.getElementById("sname").value;
+	var pname=document.getElementById("pname").value;
+	var plat=document.getElementById("plat").value;
+	var plon=document.getElementById("plon").value;
+	var habitatID=document.getElementById("habitatID").value;
+	var flag=0; 	
+	if (pname == null || pname == "") {
+    //    alert("Plot Name must be filled out");
+        flag=1;
+    }
+	if (plat == null || plat == "") {
+     //   alert("Plot Latitude must be filled out");
+        flag=1;
+    }
+	if (plon == null || plon == "") {
+    //    alert("Plot Longitude must be filled out");
+        flag=1;
+    }
+	
+	if (flag==0)
+	{
+	data2.push([sname,pname,plat,plon,habitatID]);
+	
+	
+	
+    var html = generateTable(data2);
+	   $("#result1").empty();
+    $("#result1").html(html);
+	
+	
+	}
+	else
+	alert("Information is incomplete!");
+	}
+		function generateTable(data) {
+    var html = "<caption><b>Plot Table</b></caption><tr><td>Site Name</td><td>Plot Name</td><td>Plot Longitude</td><td>Plot Latitude</td><td>Habitat Type</td></tr>";
+
+    if(typeof(data[0]) === "undefined") {
+      return null;
+    }
+
+    if(data[0].constructor === String) {
+      html += "<tr>\r\n";
+      for(var item in data) {
+        html += "<td>" + data[item] + "</td>\r\n";
+      }
+      html += "</tr>\r\n";
+    }
+
+    if(data[0].constructor === Array) {
+      for(var row in data) {
+        html += "<tr>\r\n";
+        for(var item in data[row]) {
+          html += "<td>" + data[row][item] + "</td>\r\n";
+        }
+        html += "</tr>\r\n";
+      }
+    }
+
+    if(data[0].constructor === Object) {
+      for(var row in data) {
+        html += "<tr>\r\n";
+        for(var item in data[row]) {
+          html += "<td>" + item + ":" + data[row][item] + "</td>\r\n";
+        }
+        html += "</tr>\r\n";
+      }
+    }
+    
+    return html;
+  }
 
 </script>
 
@@ -181,6 +289,16 @@ $.each(selectValues, function(key, value) {
 
 <br>
 <div id="map"  style="height:200px;" > Map</div>
+<div class=result>
+      <table id=result1></table>
+    </div>
+	<br/>
+	<input id=run type=button value="Upload to Scidrive" />
+	<div class="view">
+	
+	
+	</div>
+	
 
 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
 async defer></script>

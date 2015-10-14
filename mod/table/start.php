@@ -11,16 +11,7 @@ elgg_register_event_handler('init', 'system', 'table_init');
  */
 function table_init() {
 
-//$css_url = 'mod/d3/vendors/style.css';
-//elgg_register_css('special', $css_url);
 
-
-//elgg_register_simplecache_view('js/my_plugin/my_javascript');
-	$url = 'http://d3js.org/d3.v3.min.js';
-	elgg_register_js('d3', $url);
-	
-		$url = 'http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js';
-	elgg_register_js('d3.tip', $url);
 	
 		$url = 'http://jquery-csv.googlecode.com/git/src/jquery.csv.js';
 	elgg_register_js('jquery-csv', $url);
@@ -70,7 +61,7 @@ $(document).ready(function () {
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "mod/table/query.php",
+        url: "/mod/table/query.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
@@ -125,7 +116,7 @@ var site=document.getElementById("site").value;
 //alert(site);
 		$.post("mod/table/read.php",{site:site},function(data){
 		//$("#input3").val(data);
-		//alert (data);
+		alert (data);
 		
 		
 

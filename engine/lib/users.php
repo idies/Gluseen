@@ -949,6 +949,9 @@ $allow_multiple_emails = false, $friend_guid = 0, $invitecode = '') {
 	if ((!$allow_multiple_emails) && (get_user_by_email($email))) {
 		throw new RegistrationException(elgg_echo('registration:dupeemail'));
 	}
+	/*
+	
+	
 	// register in Scidrive
 	$url1 = ROOT_URL.'/keystone/v3/auth/tokens';
 
@@ -1194,8 +1197,7 @@ if ($http_code !== 201)
 }
 else
 {
-  /* Retrieve token id from header by parsing header lines
-  one by one. We need the X-Subject-Token field. */
+ 
   $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
   $header = substr($result, 0, $header_size);
   $header_list = explode("\r\n", $header);
@@ -1243,7 +1245,7 @@ else
 	$ch=curl_init(); 
 
     $post = array(
-      "connectionUrl"=>"jdbc:sqlserver://sciserver04.pha.jhu.edu:1433;databaseName=EarthSciTest_scitest02;integratedSecurity=false;user=gluseen;password=CBwGPm9v;",
+      "connectionUrl"=>"jdbc:sqlserver://sciserver04.pha.jhu.edu:1433;databaseName=EarthSciTest_scitest02;integratedSecurity=false;user=gluseen;password=67sFSMFDjL;",
   "tableName"=>"dbo.DecompSample",
   "containers"=>array("/".$container_name)
   
@@ -1258,8 +1260,38 @@ else
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-Auth-Token: ".$token_user,"Content-Type: application/json"));
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
     
+
+ 
 	$result = curl_exec($ch);
 	curl_close($ch); 
+	*/
+	
+	$url9=API_URL.'/login-portal/reguser';
+
+
+ $ch=curl_init(); 
+ curl_setopt($ch, CURLOPT_HEADER, 1);
+    curl_setopt($ch, CURLOPT_VERBOSE, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    curl_setopt($ch, CURLOPT_URL, $url9);
+    curl_setopt($ch, CURLOPT_POST, true);
+	//curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-Api-Key:'.API_Token,'Content-Type:application/json'));
+    // same as <input type="file" name="file_box">
+    $post = array(
+        "UserName"=>$username,
+		"Email"=>$email,		
+		"Password"=>$password,
+		"ConfirmPassword"=>$password
+	
+    );
+	$data_string = json_encode($post);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
+    $response = curl_exec($ch);
+	//echo $response;
+	curl_close($ch); 
+	
 
 	access_show_hidden_entities($access_status);
 

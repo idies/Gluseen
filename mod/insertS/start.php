@@ -15,6 +15,8 @@ function insertsite_init() {
 
 
 	
+		$url = 'http://jquery-csv.googlecode.com/git/src/jquery.csv.js';
+	elgg_register_js('jquery-csv', $url);
 	elgg_register_page_handler('insertsite', 'insertsite_page_handler');
 
 
@@ -28,17 +30,29 @@ function insertsite_page_handler() {
 
 
 
-
-
-//$response = file_get_contents('http://dsa002.pha.jhu.edu/EarthScience/EarthScience/getData?Query=select%20*%20from%20DecompSample%20where%20CollectionDate%20=%20%273/24/2014%27&format=csv');
-
-//echo $response;
+elgg_load_js('jquery-csv');
 
 
 
 $params = array(
         'title' => 'Insert Site',
-        'content' => '<h3>Insert Site</h3><br>
+        'content' => '
+				<style>
+		
+		.result {
+width:100%;
+overflow:auto;
+ border-style: solid;
+border:1px !important;
+}
+
+
+
+td {
+  padding:5px !important;
+}
+</style>
+		<h3>Insert Site</h3><br>
 		<form>
 		Site Name:<input type="text" name="sname" id="sname">
 		<br>
@@ -51,52 +65,162 @@ $params = array(
 		<input id=run3 type=button value="Insert" />
 		
 		</form>
-		
+			
 		
 		<script type="text/javascript">
+
+	
+	
+	
+	
 		
 		$(document).ready(function() {
+				
+
     
 	 $("#run3").bind("click", function() {
      
       example();
     });
+	var data2=[];
+	$("#run").bind("click", function() {
+	upload();
+
+    });
 	});
 	
-	function example(){
-		
-		
-	 	
+	var data2=[];
+	function upload(){
+	
 	var sname=document.getElementById("sname").value;
 	var slat=document.getElementById("slat").value;
 	var slon=document.getElementById("slon").value;
-	
 
-        $.post("mod/insertS/add.php",{sname:sname,slat:slat, slon:slon},function(data){
-            alert(data);
-			 $(".view").html(data);
-        });
-		
-		
-	
-		
-    
+	var flag=0; 	
+	if (sname == null || sname == "") {
+    //    alert("Plot Name must be filled out");
+        flag=1;
+    }
+	if (slat == null || slat == "") {
+     //   alert("Plot Latitude must be filled out");
+        flag=1;
+    }
+	if (slon == null || slon == "") {
+    //    alert("Plot Longitude must be filled out");
+        flag=1;
+    }
+	if (flag==0)
+	{
+
+	var newdata="";   
+for (i=0;i<data2.length;i++){
+var strdata=data2[i].toString();
+var strdata=strdata.concat(";")
+newdata=newdata.concat(strdata);
+}
+	//alert(newdata);
+      		$.ajax({
+  type: "POST",
+  url: "/mod/insertS/upload.php",
+  data: {data:newdata}, 
+  success: function (data) {
+           $(".view").html(data);
+		  
+         }, 
+});
+}
+else
+	alert("Please Refill the form!");
 	}
 	
+	function example(){
+		
+	var sname=document.getElementById("sname").value;
+	var slat=document.getElementById("slat").value;
+	var slon=document.getElementById("slon").value;
+	var data1=sname+","+slat+","+slon;	
+	 	
+	var flag=0; 	
+	if (sname == null || sname == "") {
+    //    alert("Plot Name must be filled out");
+        flag=1;
+    }
+	if (slat == null || slat == "") {
+     //   alert("Plot Latitude must be filled out");
+        flag=1;
+    }
+	if (slon == null || slon == "") {
+    //    alert("Plot Longitude must be filled out");
+        flag=1;
+    }
+	if (flag==0)
+	{
+	
+	data2.push([sname,slat,slon]);
+	
+	
+	
+    var html = generateTable(data2);
+	   $("#result1").empty();
+    $("#result1").html(html);
+	
+	}
+	else
+	alert("Information is incomplete!");
+	
+	}
+		function generateTable(data) {
+    var html = "<caption><b>Site Table</b></caption><tr><td>Site Name</td><td>Site Longitude</td><td>Site Latitude</td></tr>";
+
+    if(typeof(data[0]) === "undefined") {
+      return null;
+    }
+
+    if(data[0].constructor === String) {
+      html += "<tr>\r\n";
+      for(var item in data) {
+        html += "<td>" + data[item] + "</td>\r\n";
+      }
+      html += "</tr>\r\n";
+    }
+
+    if(data[0].constructor === Array) {
+      for(var row in data) {
+        html += "<tr>\r\n";
+        for(var item in data[row]) {
+          html += "<td>" + data[row][item] + "</td>\r\n";
+        }
+        html += "</tr>\r\n";
+      }
+    }
+
+    if(data[0].constructor === Object) {
+      for(var row in data) {
+        html += "<tr>\r\n";
+        for(var item in data[row]) {
+          html += "<td>" + item + ":" + data[row][item] + "</td>\r\n";
+        }
+        html += "</tr>\r\n";
+      }
+    }
+    
+    return html;
+  }
+	
 	</script>
-
-
-
-
-
-
-
-
-
-
-
 	<br>
 <div id="map"  style="height:200px;" > Map</div>
+
+<div class=result>
+      <table id=result1></table>
+    </div>
+	<br/>
+	<input id=run type=button value="Upload to Scidrive" />
+	<div class="view">
+	
+	
+	</div>
+	
 
 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
 async defer></script>

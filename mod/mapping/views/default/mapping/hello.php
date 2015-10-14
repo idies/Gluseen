@@ -45,8 +45,9 @@ function initializeKML() {
     zoom: 2,
     mapTypeId: google.maps.MapTypeId.TERRAIN
   });
+
   google.maps.event.addDomListener(window, 'load', initialize);
-  //loadKmlLayer(src2, map);
+
   historicalOverlay.setMap(null);
   
 }
@@ -75,12 +76,7 @@ function showInContentWindow(position, text) {
   })
   infowindow.open(map);
 }
- /*  google.maps.event.addListener(kmlLayer, 'click', function(event) {
-    var content = event.featureData.infoWindowHtml;
-    var testimonial = document.getElementById('capture');
-    testimonial.innerHTML = content;
-  });
-    google.maps.event.addDomListener(window, 'load', loadKmlLayer); */
+
 }
 
 function loadLatLng(map, index){

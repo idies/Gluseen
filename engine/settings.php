@@ -58,7 +58,7 @@ $CONFIG->dbname = 'elgg';
  *
  * @global string $CONFIG->dbhost
  */
-$CONFIG->dbhost = '10.55.17.52';
+$CONFIG->dbhost = '10.55.15.29';
 
 /**
  * The database prefix

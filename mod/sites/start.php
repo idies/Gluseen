@@ -15,21 +15,6 @@ elgg_register_event_handler('init', 'system', 'sites_init');
 function sites_init() {
 
 
-//$css_url = 'mod/d3/vendors/style.css';
-//elgg_register_css('special', $css_url);
-
-
-//elgg_register_simplecache_view('js/my_plugin/my_javascript');
-	$url = 'http://d3js.org/d3.v3.min.js';
-	elgg_register_js('d3', $url);
-	
-		$url = 'http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js';
-	elgg_register_js('d3.tip', $url);
-	
-		$url = 'mod/d3data2/jquery-csv.js';
-	elgg_register_js('jquery-csv', $url);
-
-//elgg_load_css('special');
 
 	
 	elgg_register_page_handler('sites', 'sites_page_handler');
@@ -47,13 +32,8 @@ function sites_page_handler() {
 
 
 
-$response = file_get_contents('http://dsa002.pha.jhu.edu/EarthScience/EarthScience/getData?Query=select%20*%20from%20DecompSample%20where%20CollectionDate%20=%20%273/24/2014%27&format=csv');
 
-//echo $response;
 
-elgg_load_js('d3');
-elgg_load_js('d3.tip');
-elgg_load_js('jquery-csv');
 
 $params = array(
         'title' => 'Research Sites',
@@ -116,7 +96,7 @@ $params = array(
 <b>Earthworm sampling</b> <br>
 &nbsp;&nbsp;&nbsp;Adapted from EU protocol<br>
 <b>Decomposition: using universally available pyramid teabags in place of litterbags</b><br>-->
-<img src="http://10.55.17.52/mod/sites/Sites.PNG" style="width: 100%;">
+<img src="/mod/sites/Sites.PNG" style="width: 100%;">
 
 	',
         'filter' => '',

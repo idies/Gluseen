@@ -15,38 +15,30 @@ if (!empty($_SESSION['last_forward_from'])) {
   // forward to main index page
   $forward_url = '';
 }
-
 $username = get_input('username');
 $password = get_input('password', null, false);
 $persistent = (bool) get_input("persistent");
 $result = false;
-
 if (empty($username) || empty($password)) {
   register_error(elgg_echo('login:empty'));
   forward();
 }
-
 // check if logging in with email address
 if (strpos($username, '@') !== false && ($users = get_user_by_email($username))) {
   $username = $users[0]->username;
 }
-
 $result = elgg_authenticate($username, $password);
 if ($result !== true) {
   register_error($result);
   forward(REFERER);
 }
-
 $user = get_user_by_username($username);
 if (!$user) {
   register_error(elgg_echo('login:baduser'));
   forward(REFERER);
 }
-
 $url = ROOT_URL.'/keystone/v3/auth/tokens';
-
 $ch=curl_init(); 
-
 /*
   curl_setopt($ch, CURLOPT_HEADER, 1);
   curl_setopt($ch, CURLOPT_VERBOSE, 0);
@@ -58,7 +50,6 @@ $ch=curl_init();
   
   // same as <input type="file" name="file_box">
 */
-
     $post = array(
       "auth"=> array(
         "identity"=> array(
@@ -107,7 +98,6 @@ $ch=curl_init();
 $result = curl_exec($ch);
 $info = curl_getinfo($ch);
 $http_code = (int) $info['http_code'];
-
 /* Sucessful token request should return HTTP status code:
 201 Created. */
 if ($http_code !== 201)
@@ -132,7 +122,6 @@ else
 }   
    
 setcookie("token", $token, time() + 60*60*24,'/');
-
 try {
   login($user, $persistent);
   // re-register at least the core language file for users with language other than site default
@@ -141,7 +130,6 @@ try {
   register_error($e->getMessage());
   forward(REFERER);
 }
-
 // elgg_echo() caches the language and does not provide a way to change the language.
 // @todo we need to use the config object to store this so that the current language
 // can be changed. Refs #4171
@@ -150,10 +138,8 @@ if ($user->language) {
 } else {
   $message = elgg_echo('loginok');
 }
-
 if (isset($_SESSION['last_forward_from'])) {
   unset($_SESSION['last_forward_from']);
 }
-
 system_message($message);
 forward($forward_url);
