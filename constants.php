@@ -8,6 +8,7 @@
   // Service credentials
   define("SERVICE_NAME", "gluseen");
   define("SERVICE_PASSWORD", "gluseen");
-  define("SERVICE_PROJECT", "service");
-
+  define("SERVICE_PROJECT", "Services");
+  define("API_URL","http://scitest02.pha.jhu.edu");
+  define("API_Token","6c09c8f8-0fff-45d4-9750-588227ed1a1c");
 ?>
