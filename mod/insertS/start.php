@@ -121,7 +121,7 @@ newdata=newdata.concat(strdata);
 	//alert(newdata);
       		$.ajax({
   type: "POST",
-  url: "/mod/insertS/upload.php",
+  url: "mod/insertS/upload.php",
   data: {data:newdata}, 
   success: function (data) {
            $(".view").html(data);
