@@ -66,7 +66,7 @@ $params = array(
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "/mod/insert/queryH.php",
+        url: "mod/insert/queryH.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
@@ -104,7 +104,7 @@ $.each(selectValues, function(key, value) {
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "/mod/insert/queryS.php",
+        url: "mod/insert/queryS.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
@@ -189,7 +189,7 @@ newdata=newdata.concat(strdata);
 	//alert(newdata);
       		$.ajax({
   type: "POST",
-  url: "/mod/insert/upload.php",
+  url: "mod/insert/upload.php",
   data: {data:newdata}, 
   success: function (data) {
            $(".view").html(data);
