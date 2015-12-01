@@ -164,6 +164,8 @@ var data2=[];
 	var plon=document.getElementById("plon").value;
 	var habitatID=document.getElementById("habitatID").value;
 	
+
+	
 	var flag=0; 	
 	if (pname == null || pname == "") {
     //    alert("Plot Name must be filled out");
@@ -224,7 +226,27 @@ else
 	
 	if (flag==0)
 	{
-	data2.push([sname,pname,plat,plon,habitatID]);
+			      		$.ajax({
+  type: "POST",
+  url: "mod/insert/getSiteID.php",
+  data: {sitename:sname}, 
+  success: function (data) {
+            var siteid=data;
+			var tmp=siteid.split("\n");
+			var sid=tmp[1];
+		 
+		  
+		  			      		$.ajax({
+  type: "POST",
+  url: "mod/insert/getHID.php",
+  data: {type:habitatID}, 
+  success: function (data) {
+            var siteid=data;
+			var tmp=siteid.split("\n");
+			var hid=tmp[1];
+		 
+		  
+		  		  	data2.push([sid,hid,pname,plat,plon]);
 	
 	
 	
@@ -233,12 +255,21 @@ else
     $("#result1").html(html);
 	
 	
+  },
+		  });
+		  
+
+		  
+         }, 
+});
+
+
 	}
 	else
 	alert("Information is incomplete!");
 	}
 		function generateTable(data) {
-    var html = "<caption><b>Plot Table</b></caption><tr><td>Site Name</td><td>Plot Name</td><td>Plot Longitude</td><td>Plot Latitude</td><td>Habitat Type</td></tr>";
+    var html = "<caption><b>Plot Table</b></caption><tr><td>Site ID</td><td>Habitat ID</td><td>Plot Name</td><td>Plot Longitude</td><td>Plot Latitude</td></tr>";
 
     if(typeof(data[0]) === "undefined") {
       return null;

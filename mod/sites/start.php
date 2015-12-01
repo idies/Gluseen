@@ -96,7 +96,7 @@ $params = array(
 <b>Earthworm sampling</b> <br>
 &nbsp;&nbsp;&nbsp;Adapted from EU protocol<br>
 <b>Decomposition: using universally available pyramid teabags in place of litterbags</b><br>-->
-<img src="mod/sites/Sites.PNG" style="width: 100%;">
+<img src="/mod/sites/Sites.PNG" style="width: 100%;">
 
 	',
         'filter' => '',

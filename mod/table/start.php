@@ -61,7 +61,7 @@ $(document).ready(function () {
 		 processData: false,
 		 contentType: false,
         type: "GET",
-        url: "/mod/table/query.php",
+        url: "mod/table/query.php",
         data: "",
          success: function (data) {
 		 var tmp = data.split("\n");
@@ -116,7 +116,7 @@ var site=document.getElementById("site").value;
 //alert(site);
 		$.post("mod/table/read.php",{site:site},function(data){
 		//$("#input3").val(data);
-		alert (data);
+		//alert (data);
 		
 		
 

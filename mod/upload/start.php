@@ -12,11 +12,15 @@ elgg_register_event_handler('init', 'system', 'upload2sci_init');
 function upload2sci_init() {
 
 
+elgg_register_entity_type('object', 'upload');
+
+
 
 	
 	elgg_register_page_handler('upload2sci', 'upload2sci_handler');
 
-
+	$item = new ElggMenuItem('upload2sci', 'Upload Data', 'upload2sci');
+elgg_register_menu_item('site', $item);
 
 
 	
@@ -33,7 +37,9 @@ function upload2sci_handler() {
 $params = array(
         'title' => 'Upload Data to GLUSEEN Database:',
         'content' => '
-	<p>Use the following template to upload your data to the integrated decomposition database.  The template can be found here:<br> <a href="/elgg/mod/upload/DecompSampleTemplate.csv" target="_blank">DecompSampleTemplate.csv</a>  </p>
+
+
+<p>Use the following template to upload your data to the integrated decomposition database.  The template can be found here:<br> <a href="mod/upload/DecompSampleTemplate.csv" target="_blank">DecompSampleTemplate.csv</a>  </p>
 
 
 <form action="" id="form" method="post" enctype="multipart/form-data">
@@ -45,6 +51,7 @@ $params = array(
 </form>
 <br>
 <p>Once you have uploaded your file, you can check the status of your upload by clicking on the Upload Status link in the left menu.</p>
+
 	<div class="view">
 	
 	
@@ -64,7 +71,7 @@ var file = fileInput.files[0];
 		 processData: false,
 		 contentType: false,
         type: "POST",
-        url: "/elgg/mod/upload/upload2.php",
+        url: "mod/upload/upload2.php",
         data: form_data,
          success: function (data) {
           // alert(data);
@@ -92,7 +99,6 @@ var file = fileInput.files[0];
 	echo elgg_view_page($params['title'], $body);
 	return true;
 }
-
 
 
 

@@ -14,7 +14,8 @@ $site=$_POST['site'];
 //$cdate=addDayswithdate($date,$dateRange);
 
 
-$url = 'http://scitest02.pha.jhu.edu//CasJobs/RestApi/contexts/EarthSciTest/query';
+require $_SERVER["DOCUMENT_ROOT"].'/constants.php';
+$url = DB_URL;
 //$url='10.55.17.52';
 $token= $_COOKIE['token'];
 //echo $token;
