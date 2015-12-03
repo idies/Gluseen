@@ -7,10 +7,8 @@
 
 <script>
 var map;
-//var src = 'https://developers.google.com/maps/tutorials/kml/westcampus.kml';
-//var src = 'http://pages.towson.edu/mmcguire/csn4se/sites.kml';
-//var src = 'http://yuting.a2hosted.com/KMLPHOTO.kml';
-var src3 = 'http://yutingsite.com/queryGluseen/baltimoresite.kml?key=' + Math.random();
+
+var src3 = 'http://scitest09.pha.jhu.edu/elgg/baltimoresite.kml?key=' + Math.random();
 
 /**
  * Initializes the map and calls the function that creates polylines.
