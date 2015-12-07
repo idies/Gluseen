@@ -30,13 +30,13 @@ echo elgg_view('core/account/login_dropdown');
 		<li class="elgg-menu-item"><a href="#">People</a>
 	<ul class="elgg-menu elgg-menu-site elgg-menu-site-more">
 	<li class="elgg-menu-item-activity">
-	<a href="profile/<?php echo $name?>">Profile</a>
+	<a href="/elgg/profile/<?php echo $name?>">Profile</a>
 	</li>
 	<li class="elgg-menu-item-blog">
-	<a href="friends/<?php echo $name?>">Collatorators</a>
+	<a href="/elgg/friends/<?php echo $name?>">Collatorators</a>
 	</li>
 	<li class="elgg-menu-item-bookmarks">
-	<a href="groups/all">Groups</a>
+	<a href="/elgg/groups/all">Groups</a>
 	</li>
 	
 	</ul>
@@ -51,7 +51,7 @@ echo elgg_view('core/account/login_dropdown');
 	</li>
 	
 	<li class="elgg-menu-item-bookmarks">
-	<a href="photos/siteimagesall">Photos</a>
+	<a href="/elgg/photos/siteimagesall">Photos</a>
 	</li>
 	</ul>
 	</li>
