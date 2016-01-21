@@ -11,6 +11,9 @@ elgg_register_event_handler('init', 'system', 'upload2sci_init');
  */
 function upload2sci_init() {
 
+$url = 'http://jquery-csv.googlecode.com/git/src/jquery.csv.js';
+	elgg_register_js('jquery-csv', $url);
+
 
 elgg_register_entity_type('object', 'upload');
 
@@ -30,7 +33,7 @@ elgg_register_menu_item('site', $item);
 
 function upload2sci_handler() {
 
-
+elgg_load_js('jquery-csv');
 //$name=elgg_get_logged_in_user_entity()->name;
 
 
@@ -44,18 +47,33 @@ $params = array(
 
 <form action="" id="form" method="post" enctype="multipart/form-data">
 
-    <h2>Select a file to upload:</h2><br>
+    <h2>Select a file to upload</h2><br>
     <input type="file" name="file" id="file">
 	<br><br>
     <input type="button"  id="bt" value="Upload File" name="upload">
 </form>
 <br>
-<p>Once you have uploaded your file, you can check the status of your upload by clicking on the Upload Status link in the left menu.</p>
-
+<p>Once you have uploaded your file, you can check the status of your upload by clicking <a href="http://scitest09.pha.jhu.edu/elgg/uploadStatus">Upload Status</a>.</p>
 	<div class="view">
 	
 	
 	</div>
+	
+
+<h2>List Plot IDs by Site</h2>
+<form>
+Site:
+<select id="siteID">
+
+</select>
+
+ <input type="button"  id="splot" value="Show Plot ID and Name" name="plot">
+</form>
+
+
+		<div class="result">
+      <table id=result1></table>
+    </div>
 <script type="text/javascript">
 		
 
@@ -80,8 +98,102 @@ var file = fileInput.files[0];
       });
   });  
 
+$("#splot").click(function(){
+	
+	
+	example();
+	
+	  });
+function example(){
 
-			 
+var site=document.getElementById("siteID").value;
+
+		$.post("mod/upload/read.php",{site:site},function(data){
+    var data1 = $.csv.toArrays(data);	
+    var html = generateTable(data1);
+	   $("#result1").empty();
+    $("#result1").html(html);
+	
+	});
+	
+	}
+	function generateTable(data) {
+    var html = "";
+
+    if(typeof(data[0]) === "undefined") {
+      return null;
+    }
+
+    if(data[0].constructor === String) {
+      html += "<tr>\r\n";
+      for(var item in data) {
+        html += "<td>" + data[item] + "</td>\r\n";
+      }
+      html += "</tr>\r\n";
+    }
+
+    if(data[0].constructor === Array) {
+      for(var row in data) {
+        html += "<tr>\r\n";
+        for(var item in data[row]) {
+          html += "<td>" + data[row][item] + "</td>\r\n";
+        }
+        html += "</tr>\r\n";
+      }
+    }
+
+    if(data[0].constructor === Object) {
+      for(var row in data) {
+        html += "<tr>\r\n";
+        for(var item in data[row]) {
+          html += "<td>" + item + ":" + data[row][item] + "</td>\r\n";
+        }
+        html += "</tr>\r\n";
+      }
+    }
+    
+    return html;
+  }
+	  
+	$(document).ready(function () {
+     $.ajax({
+		 processData: false,
+		 contentType: false,
+        type: "GET",
+        url: "mod/d3/query.php",
+        data: "",
+         success: function (data) {
+		 var tmp = data.split("\n");
+
+        var selectValues={};
+
+for (i=1;i<tmp.length;i++){
+if (tmp[i]!="")
+{
+var str=tmp[i];
+var ss=str.substring(1,str.length-1);
+selectValues[i]=ss;
+}
+
+}
+//alert(selectValues);
+
+$.each(selectValues, function(key, value) {   
+     $("#siteID")
+          .append($("<option>", { value : key })
+          .text(value)
+		  .val(value)
+		  ); 
+});
+
+		},
+      });
+
+
+
+		
+
+});		 
 			 </script>
 		',
 		
