@@ -1290,9 +1290,18 @@ else
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
     $response = curl_exec($ch);
 	//echo $response;
-	curl_close($ch); 
 	
+	$info = curl_getinfo($ch);
+$http_code = (int) $info['http_code'];
 
+
+if ($http_code !== 201)
+{
+throw new RegistrationException(elgg_echo('registration:error'));
+
+}
+
+curl_close($ch); 
 	access_show_hidden_entities($access_status);
 
 	// Create user
