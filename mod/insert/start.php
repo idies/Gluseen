@@ -246,7 +246,7 @@ else
 			var hid=tmp[1];
 		 
 		  
-		  		  	data2.push([sid,hid,pname,plat,plon]);
+		  		  	data2.push([hid,sid,pname,plat,plon]);
 	
 	
 	
@@ -269,7 +269,7 @@ else
 	alert("Information is incomplete!");
 	}
 		function generateTable(data) {
-    var html = "<caption><b>Plot Table</b></caption><tr><td>Site ID</td><td>Habitat ID</td><td>Plot Name</td><td>Plot Longitude</td><td>Plot Latitude</td></tr>";
+    var html = "<caption><b>Plot Table</b></caption><tr><td>Habitat ID</td><td>Site ID</td><td>Plot Name</td><td>Plot Longitude</td><td>Plot Latitude</td></tr>";
 
     if(typeof(data[0]) === "undefined") {
       return null;
