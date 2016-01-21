@@ -37,19 +37,9 @@ if (!$user) {
   register_error(elgg_echo('login:baduser'));
   forward(REFERER);
 }
-$url = ROOT_URL.'/keystone/v3/auth/tokens';
+$url = PORTAL_URL.'/keystone/v3/tokens';
 $ch=curl_init(); 
-/*
-  curl_setopt($ch, CURLOPT_HEADER, 1);
-  curl_setopt($ch, CURLOPT_VERBOSE, 0);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_POST, true);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-  
-  // same as <input type="file" name="file_box">
-*/
+
     $post = array(
       "auth"=> array(
         "identity"=> array(
@@ -59,7 +49,7 @@ $ch=curl_init();
           "password"=> array(
             "user"=> array(
               "domain"=> array(
-                "id"=>"default"
+                "name"=>"Default"
               ),
               "name"=> $username,
               "password"=> $password
@@ -69,9 +59,6 @@ $ch=curl_init();
         "scope"=> array(
           "project"=> array(
             "name"=> $username,
-            "domain"=> array(
-              "id"=> "default"
-            )
           )
         )
       )      
@@ -85,29 +72,18 @@ $ch=curl_init();
   curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
   curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
     
-/*
-  $response = curl_exec($ch);
-  echo $response;
-  list($header, $body) = explode("\r\n\r\n", $response, 2);
-  //echo $header;
-  echo "<br>";
-  $token=substr($header,140,32);
-  echo $token;
-*/
  
 $result = curl_exec($ch);
 $info = curl_getinfo($ch);
 $http_code = (int) $info['http_code'];
-/* Sucessful token request should return HTTP status code:
-201 Created. */
-if ($http_code !== 201)
+
+if ($http_code !== 200)
 {
   // throw new Exception("Could not obtain token.");
 }
 else
 {
-  /* Retrieve token id from header by parsing header lines
-  one by one. We need the X-Subject-Token field. */
+
   $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
   $header = substr($result, 0, $header_size);
   $header_list = explode("\r\n", $header);
