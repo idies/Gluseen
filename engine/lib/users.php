@@ -1265,7 +1265,7 @@ else
 	$result = curl_exec($ch);
 	curl_close($ch); 
 	*/
-	
+	/*
 	$url9=API_URL.'/login-portal/reguser';
 
 
@@ -1302,6 +1302,8 @@ throw new RegistrationException(elgg_echo('registration:error'));
 }
 
 curl_close($ch); 
+
+*/
 	access_show_hidden_entities($access_status);
 
 	// Create user
