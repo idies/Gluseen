@@ -12,6 +12,7 @@ $mod_params = array('class' => 'elgg-module-highlight');
 ?>
 <?php
  $name=elgg_get_logged_in_user_entity()->username;
+ 
  ?>
 <style type="text/css">
 .leftbar{
@@ -92,15 +93,15 @@ echo elgg_view("index/lefthandside");
 
 
 // files
-echo elgg_view_module('featured',  elgg_echo("custom:members"), $vars['members'], $mod_params);
+echo elgg_view_module('featured',  elgg_echo("Latest members"), $vars['members'], $mod_params);
 // files
 if (elgg_is_active_plugin('file')) {
-	echo elgg_view_module('featured',  elgg_echo("custom:files"), $vars['files'], $mod_params);
+	echo elgg_view_module('featured',  elgg_echo("Latest files"), $vars['files'], $mod_params);
 }
 
 // groups
 if (elgg_is_active_plugin('groups')) {
-	echo elgg_view_module('featured',  elgg_echo("custom:groups"), $vars['groups'], $mod_params);
+	echo elgg_view_module('featured',  elgg_echo("Latest groups"), $vars['groups'], $mod_params);
 }
 // a view for plugins to extend
 echo elgg_view("index/righthandside");
@@ -109,7 +110,7 @@ echo elgg_view("index/righthandside");
 
 // groups
 if (elgg_is_active_plugin('blog')) {
-	echo elgg_view_module('featured',  elgg_echo("custom:blogs"), $vars['blogs'], $mod_params);
+	echo elgg_view_module('featured',  elgg_echo("Last blog posts"), $vars['blogs'], $mod_params);
 }
 
 // files
