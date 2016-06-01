@@ -11,8 +11,8 @@ elgg_register_event_handler('init', 'system', 'upload2sci_init');
  */
 function upload2sci_init() {
 
-$url = 'http://jquery-csv.googlecode.com/git/src/jquery.csv.js';
-	elgg_register_js('jquery-csv', $url);
+		$url2 = 'mod/d3/jquery.csv.js';
+	elgg_register_js('j-c', $url2);
 
 
 elgg_register_entity_type('object', 'upload');
@@ -33,7 +33,7 @@ elgg_register_menu_item('site', $item);
 
 function upload2sci_handler() {
 
-elgg_load_js('jquery-csv');
+elgg_load_js('j-c');
 //$name=elgg_get_logged_in_user_entity()->name;
 
 

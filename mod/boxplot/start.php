@@ -26,8 +26,9 @@ function boxplot_init() {
 		$url = 'http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js';
 	elgg_register_js('d3.tip', $url);
 	
-		$url = 'mod/d3data2/jquery-csv.js';
-	elgg_register_js('jquery-csv', $url);
+		$url2 = 'mod/d3/jquery.csv.js';
+		//$url2 = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js';
+	elgg_register_js('j-c', $url2);
 
 	
 			$url = 'mod/boxplot/box.js';
@@ -52,7 +53,7 @@ function boxplot_page_handler() {
 
 elgg_load_js('d3');
 elgg_load_js('d3.tip');
-elgg_load_js('jquery-csv');
+elgg_load_js('j-c');
 elgg_load_js('box');
 
 $params = array(
@@ -91,7 +92,7 @@ height:100%;
 }
 
 .axis {
-  font: 12px sans-serif;
+  font: 15px sans-serif;
 }
  
 .axis path,
@@ -109,12 +110,12 @@ height:100%;
 
    
     </style>
-
+<!--
 <b>Group by:</b><br>
 <input type="radio" name="varation" id="site" value="site">City<br>
 <input type="radio" name="varation" id="habitat" value="habitat">Habitat
 <br>
-
+-->
 <b>City:</b> 
 <form>
 <select id="siteID">
@@ -228,7 +229,7 @@ $.each(selectValues, function(key, value) {
 
 var margin = {top: 30, right: 50, bottom: 70, left: 50};
 var  width = 900 - margin.left - margin.right;
-var height = 400 - margin.top - margin.bottom;
+var height = 550 - margin.top - margin.bottom;
 
 var min = Infinity,
     max = -Infinity;
@@ -237,10 +238,9 @@ var chart = d3.box()
     .whiskers(iqr(1.5))
     .width(width)
     .height(height);
-if (document.getElementById("site").checked==true)
-	{	
+	
 
-$.post("mod/boxplot/read.php",{site:site},function(data1){
+$.post("mod/boxplot/read.php",{site:site,habitat:habitat},function(data1){
 
 d3.csv(data1, function(data) {
 
@@ -326,11 +326,11 @@ var svg = d3.select(".view").append("svg")
 	// add a title
 	svg.append("text")
         .attr("x", (width / 2))             
-        .attr("y", 0 + (margin.top / 2))
+        .attr("y", 0 + (margin.top / 2-20))
         .attr("text-anchor", "middle")  
         .style("font-size", "18px") 
         //.style("text-decoration", "underline")  
-        .text("City: "+site);
+        .text("Decomposition Rates for "+habitat+" in "+site);
  
 	 // draw y axis
 	svg.append("g")
@@ -339,138 +339,11 @@ var svg = d3.select(".view").append("svg")
 		.append("text") // and text1
 		  
 		  .attr("y", 6)
-		  .attr("dx", "2.8em")
+		  .attr("dx", "8.8em")
 		  .attr("dy", ".71em")
 		  .style("text-anchor", "end")
-		  .style("font-size", "14px") 
-		  .text("pctDecrease");		
-	
-	// draw x axis	
-	svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + (height  + margin.top + 5) + ")")
-      .call(xAxis)
-	  .selectAll("text")	
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", ".15em")
-            .attr("transform", function(d) {
-                return "rotate(-55)" 
-                });
-	  
-		
-
-
-
-
-  });
-});
-}
-else if(document.getElementById("habitat").checked==true){
-$.post("mod/boxplot/read2.php",{habitat:habitat},function(data1){
-
-d3.csv(data1, function(data) {
-
-
-var data= $.csv.toObjects(data1);
-
-
-data2=[];
-var tmp=[];
-tmp2=[];
-  data.forEach(function(x) {
- var t=x.PlotName;
- var t2=x.PlotID;
- 
- if (tmp2.indexOf(t2)==-1)
- {
- tmp2.push(t2);
- tmp.push(t);
- 
- var e=tmp2.indexOf(t2);
- }
- else
- {
- var e=tmp2.indexOf(t2);
- }
- if (x.CollectionWeight=="null")
- {
-   }
-	
-	else
-	{
-	var   r = 1;
-     var   s = (x.DeploymentWeight-x.CollectionWeight)/x.DeploymentWeight;
-     var   d = data2[e];
-    if (!d) d = data2[e] = [s];
-    else d.push(s);
-    if (s > max) max = s;
-    if (s < min) min = s;
-	
-	}
-  
-  });
- 
-  chart.domain([min, max]);
-
-var svg = d3.select(".view").append("svg")
-		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom+180)
-		.attr("class", "box")    
-		.append("g")
-		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-	
-	// the x-axis
-	var x = d3.scale.ordinal()	   
-		.domain( tmp.map(function(d) { console.log(d); return d } ) )	    
-		.rangeRoundBands([0 , width], 0.7, 0.3); 		
-		
-	var x2 = d3.scale.ordinal()	   
-		.domain( data2.map(function(d) { console.log(d); return d[0] } ) )	    
-		.rangeRoundBands([0 , width], 0.7, 0.3); 	
-
-	var xAxis = d3.svg.axis()
-		.scale(x)
-		.orient("bottom");
-
-	// the y-axis
-	var y = d3.scale.linear()
-		.domain([min, max])
-		.range([height + margin.top, 0 + margin.top]);
-	
-	var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-
-	// draw the boxplots	
-	svg.selectAll(".box")	   
-      .data(data2)
-	  .enter().append("g")
-		.attr("transform", function(d) { return "translate(" +  x2(d[0])  + "," + margin.top + ")"; } )
-      .call(chart.width(x2.rangeBand())); 
-	
-	      
-	// add a title
-	svg.append("text")
-        .attr("x", (width / 2))             
-        .attr("y", 0 + (margin.top / 2))
-        .attr("text-anchor", "middle")  
-        .style("font-size", "18px") 
-        //.style("text-decoration", "underline")  
-        .text("Habitat Type: "+habitat);
- 
-	 // draw y axis
-	svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-		.append("text") // and text1
-		  
-		  .attr("y", 6)
-		  .attr("dx", "2.8em")
-		  .attr("dy", ".71em")
-		  .style("text-anchor", "end")
-		  .style("font-size", "14px") 
-		  .text("pctDecrease");		
+		  .style("font-size", "16px") 
+		  .text("Percent Initial Mass Loss");		
 	
 	// draw x axis	
 	svg.append("g")
@@ -494,11 +367,6 @@ var svg = d3.select(".view").append("svg")
 });
 
 
-
-
-
-
-}
 
 }
 function randomize(d) {
@@ -535,7 +403,7 @@ function iqr(k) {
 	',
         'filter' => '',
     );
-	$body = elgg_view_layout('content', $params);
+	$body = elgg_view_layout('owner_block', $params);
 
 	echo elgg_view_page($params['title'], $body);
 	return true;

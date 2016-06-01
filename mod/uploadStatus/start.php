@@ -13,8 +13,10 @@ function uploadStatus_init() {
 		$url = 'http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js';
 	elgg_register_js('d3.tip', $url);
 	
-		$url = 'http://jquery-csv.googlecode.com/git/src/jquery.csv.js';
-	elgg_register_js('jquery-csv', $url);
+			$url2 = 'mod/d3/jquery.csv.js';
+	elgg_register_js('j-c', $url2);
+	
+
 
 //elgg_load_css('special');
 
@@ -32,7 +34,7 @@ function uploadStatus_init() {
 function uploadStatus_handler() {
 //elgg_load_js('d3');
 //elgg_load_js('d3.tip');
-elgg_load_js('jquery-csv');
+elgg_load_js('j-c');
 
 
 

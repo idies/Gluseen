@@ -36,7 +36,7 @@ border: 1px solid black;
 <div class="leftbar">
 <ul >
 <li style="padding:5px"><a href="/"><font color="black">Home</font></a></li>
-<li style="padding:5px"><a href="/activity"><font color="black">Activity</font></a></li>
+<li style="padding:5px"><a href="activity"><font color="black">Activity</font></a></li>
 	<li style="padding:5px"><a href="/friends/<?php echo $name?>"><font color="black">Collaborators</font></a></li>
 	<li style="padding:5px"><a href="/groups/all"><font color="black">Groups</font></a></li>
 	
