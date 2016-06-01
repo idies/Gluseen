@@ -30,13 +30,13 @@ echo elgg_view('core/account/login_dropdown');
 		<li class="elgg-menu-item"><a href="#">People</a>
 	<ul class="elgg-menu elgg-menu-site elgg-menu-site-more">
 	<li class="elgg-menu-item-activity">
-	<a href="/profile/<?php echo $name?>">Profile</a>
+	<a href="/elgg/profile/<?php echo $name?>">Profile</a>
 	</li>
 	<li class="elgg-menu-item-blog">
-	<a href="/friends/<?php echo $name?>">Collatorators</a>
+	<a href="/elgg/friends/<?php echo $name?>">Collatorators</a>
 	</li>
 	<li class="elgg-menu-item-bookmarks">
-	<a href="/groups/all">Groups</a>
+	<a href="/elgg/groups/all">Groups</a>
 	</li>
 	
 	</ul>
@@ -44,34 +44,34 @@ echo elgg_view('core/account/login_dropdown');
 		<li class="elgg-menu-item"><a href="#">Places</a>
 	<ul class="elgg-menu elgg-menu-site elgg-menu-site-more">
 	<li class="elgg-menu-item-blog">
-	<a href="/sites">Research Sites</a>
+	<a href="/elgg/sites">Research Sites</a>
 	</li>
 	<li class="elgg-menu-item-activity">
-	<a href="/mapping">Map</a>
+	<a href="/elgg/mapping">Map</a>
 	</li>
 	
 	<li class="elgg-menu-item-bookmarks">
-	<a href="/photos/siteimagesall">Photos</a>
+	<a href="/elgg/photos/siteimagesall">Photos</a>
 	</li>
 	</ul>
 	</li>
 		<li class="elgg-menu-item"><a href="#">Data</a>
 	<ul class="elgg-menu elgg-menu-site elgg-menu-site-more">
     	  <li class="elgg-menu-item-blog">
-	<a href="/insertsite">Add Site</a>
+	<a href="/elgg/insertsite">Add Site</a>
 	</li>
 		 <li class="elgg-menu-item-blog">
-	<a href="/insertplot">Add Plot</a>
+	<a href="/elgg/insertplot">Add Plot</a>
 	</li>
 	
 	<li class="elgg-menu-item-activity">
-	<a href="/upload2sci">Upload Samples</a>
+	<a href="/elgg/upload2sci">Upload Samples</a>
 	</li>
 	<li class="elgg-menu-item-activity">
-	<a href="/uploadStatus">Upload Status</a>
+	<a href="/elgg/uploadStatus">Upload Status</a>
 	</li>
     <li class="elgg-menu-item-blog">
-	<a href="/table">View Table</a>
+	<a href="/elgg/table">View Table</a>
 	</li>
 
 	
@@ -80,19 +80,19 @@ echo elgg_view('core/account/login_dropdown');
 	<li class="elgg-menu-item"><a href="#">Results</a>
 	<ul class="elgg-menu elgg-menu-site elgg-menu-site-more">
 	<li class="elgg-menu-item-activity">
-	<a href="/publications">Publications</a>
+	<a href="/elgg/publications">Publications</a>
 	</li>
 	<li class="elgg-menu-item-blog">
-	<a href="/manuscript">Manuscripts</a>
+	<a href="/elgg/manuscript">Manuscripts</a>
 	</li>
 	<li class="elgg-menu-item-bookmarks">
-	<a href="/d3">Bar Visualization</a>
+	<a href="/elgg/d3">Bar Visualization</a>
 	</li>
 		<li class="elgg-menu-item-bookmarks">
-	<a href="/boxplot">Boxplot Visualization</a>
+	<a href="/elgg/boxplot">Boxplot Visualization</a>
 	</li>
 			<li class="elgg-menu-item-bookmarks">
-	<a href="/ipython">iPython Notebook</a>
+	<a href="/elgg/ipython">iPython Notebook</a>
 	</li>
 	</ul>
 	</li>
