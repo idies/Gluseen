@@ -9,6 +9,7 @@
  */
 
 /** Elgg magic session */
+require $_SERVER["DOCUMENT_ROOT"].'/constants.php';
 global $SESSION;
 
 /**
@@ -53,6 +54,7 @@ function elgg_get_logged_in_user_guid() {
 function elgg_is_logged_in() {
 	$user = elgg_get_logged_in_user_entity();
 
+	
 	if ((isset($user)) && ($user instanceof ElggUser) && ($user->guid > 0)) {
 		return true;
 	}
@@ -341,8 +343,12 @@ function login(ElggUser $user, $persistent = false) {
  * @return bool
  */
 function logout() {
+	
+	
 	if (isset($_SESSION['user'])) {
 		if (!elgg_trigger_event('logout', 'user', $_SESSION['user'])) {
+			
+			
 			return false;
 		}
 		$_SESSION['user']->code = "";
@@ -366,8 +372,14 @@ function logout() {
 	// starting a default session to store any post-logout messages.
 	_elgg_session_boot(NULL, NULL, NULL);
 	$_SESSION['msg'] = $old_msg;
+	
+	header("Location: ".PORTAL_URL."/Account/Logout");
+			exit();
 
 	return TRUE;
+	
+	
+	
 }
 
 /**
@@ -384,7 +396,13 @@ function logout() {
  * @return bool
  * @access private
  */
+
+
+
 function _elgg_session_boot() {
+
+
+	
 	global $DB_PREFIX, $CONFIG;
 
 	// Use database for sessions
@@ -403,21 +421,58 @@ function _elgg_session_boot() {
 	session_start();
 
 	// Generate a simple token (private from potentially public session id)
-	if (!isset($_SESSION['__elgg_session'])) {
+ 	if (!isset($_SESSION['__elgg_session'])) {
 		$_SESSION['__elgg_session'] = md5(microtime() . rand());
-	}
+	} 
 
 	// test whether we have a user session
-	if (empty($_SESSION['guid'])) {
+ 	   if($_REQUEST['token']) {
+$user_token = $_REQUEST['token'];
+
+//echo $user_token;
+$user_info = validate_token($user_token);
+
+$user_name = $user_info->token->user->name;
+//$credentials = array('username' => $username, 'password' => $password);
+$user = get_user_by_username($user_name);
+
+//$user = _elgg_services()->usersTable->getByUsername($user_name);
+if (!$user) {
+//echo "error";
+register_user($user_name, random_password(), $user_name, $user_name.'@foo.bar');
+$user = get_user_by_username($user_name);
+//_elgg_services()->usersTable->register($user_name, random_password(), $user_name, $user_name.'@foo.bar');
+//_elgg_services()->usersTable->getByUsername($user_name);
+}
+//$session->invalidate();
+//$session->setLoggedInUser($user);
+
+	$_SESSION['user'] = $user;
+	$_SESSION['guid'] = $user->getGUID();
+	$_SESSION['id'] = $user->getGUID();
+	$_SESSION['username'] = $user->username;
+	$_SESSION['name'] = $user->name;
+	setcookie('token', $user_token, (time() + (86400 * 30)), "/");
+		session_regenerate_id();
+
+	// Update statistics
+	set_last_login($_SESSION['guid']);
+	reset_login_failure_count($user->guid);
+	
+
+} 
+	 else if (empty($_SESSION['guid'])) {
 
 		// clear session variables before checking cookie
 		unset($_SESSION['user']);
 		unset($_SESSION['id']);
 		unset($_SESSION['guid']);
 		unset($_SESSION['code']);
+		
+		
 
 		// is there a remember me cookie
-		if (isset($_COOKIE['elggperm'])) {
+	 	if (isset($_COOKIE['elggperm'])) {
 			// we have a cookie, so try to log the user in
 			$code = $_COOKIE['elggperm'];
 			$code = md5($code);
@@ -428,8 +483,12 @@ function _elgg_session_boot() {
 				$_SESSION['guid'] = $_SESSION['id'];
 				$_SESSION['code'] = $_COOKIE['elggperm'];
 			}
+			
 		}
-	} else {
+		
+	}  
+
+	else {
 		// we have a session and we have already checked the fingerprint
 		// reload the user object from database in case it has changed during the session
 		if ($user = get_user($_SESSION['guid'])) {
@@ -455,15 +514,20 @@ function _elgg_session_boot() {
 	// Register a default PAM handler
 	register_pam_handler('pam_auth_userpass');
 
+
 	// Initialise the magic session
 	global $SESSION;
 	$SESSION = new ElggSession();
+	
+
 
 	// Finally we ensure that a user who has been banned with an open session is kicked.
 	if ((isset($_SESSION['user'])) && ($_SESSION['user']->isBanned())) {
 		session_destroy();
 		return false;
 	}
+	
+	
 
 	return true;
 }
@@ -653,4 +717,32 @@ function _elgg_session_gc($maxlifetime) {
 	}
 
 	return true;
+}
+
+function validate_token($user_token) {
+$ch = curl_init(PORTAL_URL."/keystone/v3/tokens/".$user_token);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$result = curl_exec($ch);
+$info = curl_getinfo($ch);
+$http_code = (int) $info['http_code'];
+if ($http_code !== 200 && $http_code !== 203)
+{
+throw new Exception("Authentication failed.");
+}
+else
+{
+return json_decode($result);
+}
+
+
+curl_close($ch);
+
+}
+
+function random_password($length = 8) {
+$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+$password = substr(str_shuffle($chars), 0, $length );
+return $password;
 }

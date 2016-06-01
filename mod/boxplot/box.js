@@ -20,7 +20,7 @@ d3.box = function() {
       //d = d.map(value).sort(d3.ascending);
 	  //var boxIndex = data[0];
 	  //var boxIndex = 1;
-	  var d = data[1].sort(d3.ascending);
+	 var d = data.map(value).sort(d3.ascending);
 	  
 	 // console.log(boxIndex); 
 	  //console.log(d); 

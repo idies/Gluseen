@@ -86,7 +86,10 @@ echo elgg_view('core/account/login_dropdown');
 	<a href="/elgg/manuscript">Manuscripts</a>
 	</li>
 	<li class="elgg-menu-item-bookmarks">
-	<a href="/elgg/d3">Visualization</a>
+	<a href="/elgg/d3">Bar Visualization</a>
+	</li>
+	<li class="elgg-menu-item-bookmarks">
+	<a href="/elgg/boxplot">Boxplot Visualization</a>
 	</li>
 	
 	</ul>

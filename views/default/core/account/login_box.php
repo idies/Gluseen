@@ -8,6 +8,22 @@
  * @uses $vars['module'] The module name. Default: aside
  */
 
+ require $_SERVER["DOCUMENT_ROOT"].'/constants.php';
+$callback_url = elgg_get_site_url();
+//echo $callback_url;
+
+header("Location: ".PORTAL_URL."/Account/Login?callbackURL=".urlencode($callback_url));
+//header("Location: ".PORTAL_URL."/Account/Login");
+exit();
+
+
+
+
+
+	
+	
+		
+		/*
 $module = elgg_extract('module', $vars, 'aside');
 
 $login_url = elgg_get_site_url();
@@ -19,3 +35,5 @@ $title = elgg_echo('login');
 $body = elgg_view_form('login', array('action' => "{$login_url}action/login"));
 
 echo elgg_view_module($module, $title, $body);
+*/
+	

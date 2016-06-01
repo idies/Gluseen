@@ -3,6 +3,11 @@
  * Elgg custom index page
  * 
  */
+ 
+  
+ if (elgg_is_logged_in()) {
+     //forward('index.php');
+ }
 
 elgg_push_context('front');
 
@@ -50,9 +55,13 @@ unset($list_params['subtype']);
 $groups = elgg_list_entities($list_params);
 
 //grab the login form
-$login = elgg_view("core/account/login_box");
+//$login = elgg_view("core/account/login_box");
 
 elgg_pop_context();
+
+
+  
+
 
 // lay out the content
 $params = array(
@@ -63,7 +72,7 @@ $params = array(
 	//'bookmarks' => $bookmarks,
 	'files' => $files,
 	'groups' => $groups,
-	'login' => $login,
+//	'login' => $login,
 	'members' => $newest_members,
 );
 $body = elgg_view_layout('custom_index', $params);
@@ -73,3 +82,4 @@ global $autofeed;
 $autofeed = FALSE;
 
 echo elgg_view_page('', $body);
+
