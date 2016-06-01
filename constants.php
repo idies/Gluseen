@@ -1,7 +1,7 @@
 <?php
   // Single sign-on portal URL
    define("ROOT_URL","http://scitest09.pha.jhu.edu");
-  define("PORTAL_URL","http://scitest09.pha.jhu.edu/login-portal");
+  define("PORTAL_URL","http://scitest02.pha.jhu.edu/login-portal");
   define("KEYSTONE_URL", "http://scitest09.pha.jhu.edu/keystone");
   define("KEYSTONE_PROXY", "http://scitest09.pha.jhu.edu/keystone");
 
