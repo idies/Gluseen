@@ -4,7 +4,7 @@
 node-modules/
 engine/settings.php
 constants.php
-webhook/
+webhook.php
 
 # Compiled source #
 ###################
