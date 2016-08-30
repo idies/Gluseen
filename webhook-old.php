@@ -29,11 +29,36 @@ function webhookError( $severity , $message , $file , $line ) {
 };
 set_error_handler( "webhookError" ) ;
 
+
+// FUNCTIONS
+function write_event( $new_info ) {
+	$events_fname = 'webhook-data/github-webhook-event.txt';
+	$waitIfLocked = true;
+
+	// Write push event info to events file, to be picked up by cron and acted on.
+	$eventFile = fopen( $events_fname , "c+") or trigger_error( $log_id . " Could not open $events_fname" );
+
+	flock( $eventFile, LOCK_EX, $waitIfLocked ) or trigger_error( $log_id . " Could not lock $events_fname" );
+
+	$info =  ( $contents = fread( $eventFile, filesize( $events_fname ) ) ) ? json_decode($contents) : array() ;
+	$info[] = $new_info;
+	
+	ftruncate( $eventFile , 0 );
+	rewind($eventFile);
+	fwrite( $eventFile , json_encode($info) . "\n" ) ;
+
+	fflush($eventFile);            // flush output before releasing the lock
+	flock($eventFile, LOCK_UN);    // release the lock
+	
+	fclose( $eventFile );
+	return true;
+}
+
+
 //set secret token, date, event, git id of webhook event.
 $hookSecret = 'ypusSt2eQxawYV6Uvk7qty3XNqLtGdB9' ;
-$hookbranches["test_elgg_idies"] = "/data1/dswww-ln01/gluseen.org/test.elgg/html";
-$hookbranches["prod_elgg_idies"] = "/data1/dswww-ln01/gluseen.org/elgg/html";
-$hookrepo = "GLUSEEN-ELGG";
+//$test_branch = "test_elgg_idies";
+//$prod_branch = "prod_elgg_idies";
 
 $event = $_SERVER['HTTP_X_GITHUB_EVENT'] ?: 'null-event';
 $gitid = $_SERVER['HTTP_X_GITHUB_DELIVERY'] ?: 'null-id';
@@ -84,61 +109,5 @@ $new_info = array( 	'timestamp' => $time ,
 					'repo' =>  $repo ,
 					);
 					
-if ( 'push' == $event ) {
-	if ( array_key_exists ( $branch  , $hookbranches ) ) {
-		$result = shell_exec ( "cd $hookbranches[$branch];ls" );
-		mail('bsouter@jhu.edu', 'result', $result);
-	}
-}
-
-// or instead of writing to the events file
-// do rsync with config files and pull in new commit on branch yourself.
-
-/* 
-if event == push 
-  if repo == elgg-repo
-    if branch == test-branch
-      cd to elgg/html
-	  if current-commit = before
-	  write lockfile
-	  pull in after-commit, recursively	  
-	  delete lockfile
-	  return
-    elseif branch == prod-branch
-      cd to test.elgg/html
-	  if current-commit = before
-	  write lockfile
-	  pull in after-commit, recursively	  
-	  delete lockfile
-	  return
-    end
-  end
-end
-send email notify invalid push
-*/
-
-
-// FUNCTIONS
-function write_event( $new_info ) {
-	$events_fname = 'webhook-data/github-webhook-event.txt';
-	$waitIfLocked = true;
-
-	// Write push event info to events file, to be picked up by cron and acted on.
-	$eventFile = fopen( $events_fname , "c+") or trigger_error( $log_id . " Could not open $events_fname" );
-
-	flock( $eventFile, LOCK_EX, $waitIfLocked ) or trigger_error( $log_id . " Could not lock $events_fname" );
-
-	$info =  ( $contents = fread( $eventFile, filesize( $events_fname ) ) ) ? json_decode($contents) : array() ;
-	$info[] = $new_info;
-	
-	ftruncate( $eventFile , 0 );
-	rewind($eventFile);
-	fwrite( $eventFile , json_encode($info) . "\n" ) ;
-
-	fflush($eventFile);            // flush output before releasing the lock
-	flock($eventFile, LOCK_UN);    // release the lock
-	
-	fclose( $eventFile );
-	return true;
-}
+if ( 'push' == $event ) write_event( $new_info ) ;
 
