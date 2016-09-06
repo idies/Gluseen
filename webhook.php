@@ -31,8 +31,8 @@ set_error_handler( "webhookError" ) ;
 
 //set secret token, date, event, git id of webhook event.
 $hookSecret = 'ypusSt2eQxawYV6Uvk7qty3XNqLtGdB9' ;
-$hookbranches["test_elgg_idies"] = "/data1/dswww-ln01/gluseen.org/test.elgg/html";
-$hookbranches["prod_elgg_idies"] = "/data1/dswww-ln01/gluseen.org/elgg/html";
+$hookbranches["test_elgg_idies"] = "/data1/dswww-ln01/gluseen.org/test.elgg/html/.git";
+$hookbranches["prod_elgg_idies"] = "/data1/dswww-ln01/gluseen.org/elgg/html/.git";
 $hookrepo = "GLUSEEN-ELGG";
 
 $event = $_SERVER['HTTP_X_GITHUB_EVENT'] ?: 'null-event';
@@ -43,6 +43,7 @@ $date = date("Y-m-d H:i:s ");
 $time = time();
 
 $log_id = $date . " " . $gitid;
+$waitIfLocked=true;
 
 // Check the hash
 if ( !empty( $hookSecret ) ) {
@@ -72,54 +73,69 @@ switch ($_SERVER['CONTENT_TYPE']) {
 $payload = json_decode($json);
 
 // Write the event to the log file
-$branch = array_pop( explode('/', $payload->ref ));
-$commit = $payload->commits[0]->id ;
 $repo =  $payload->repository->name;
-trigger_error( $log_id . " Received Event $event for Branch $branch in repository $repo" , E_USER_NOTICE );
+$remote =  $payload->repository->url;
+$branch = array_pop( explode('/', $payload->ref ));
+$aftercommit = $payload->after;
+$beforecommit = $payload->before;
+trigger_error( $log_id . " Received Event $event for Branch $branch in repository $repo for commit $aftercommit" , E_USER_NOTICE );
+		
+if ( 'push' == $event ) {
+	if ( array_key_exists ( $branch  , $hookbranches ) ) {
+		
+		//fetch from origin, then find the commit & branch from result
+		exec("git --git-dir=$hookbranches[$branch] fetch --all 2>&1 " , $fetch_result );
+		exec("git --git-dir=$hookbranches[$branch] log -1 --decorate=full 2>&1 | grep commit" , $result );
+		$pattern = "/^commit ([[:alnum:]]*) \((.*)\)$/";
+		preg_match ( $pattern , $result[0] ,$matches);
+		
+		// Check Branch
+		$currentbranches = !empty( $matches[2] ) ? explode(", ", $matches[2]) : array();
+		if ( !in_array( 'refs/heads/'.$branch , $currentbranches ) ) 
+			trigger_error( $log_id . " Current branches " . var_export($currentbranches,true) . " do not include branch to pull 'refs/heads/'.$branch" . "\n" , E_USER_ERROR );
+		
+		// Check sequential commit
+		$currentcommit = !empty( $matches[1] ) ? $matches[1] : "";
+		if ( $currentcommit == $aftercommit ) {
+			trigger_error( $log_id . " Current commit is same as target commit: $currentcommit " . "\n" , E_USER_ERROR );
+		} else if ( $currentcommit != $beforecommit ) {
+			trigger_error( $log_id . " Current commit is not target commit's direct ancestor: $currentcommit =/= $beforecommit" . "\n" , E_USER_ERROR );
+		}
+		
+		//Create Lockfile
+		$lockFile = tmpfile() or 
+			trigger_error( $log_id . " Could not create lock file" , E_USER_ERROR );
+		flock( $lockFile, LOCK_EX, $waitIfLocked ) or 
+			trigger_error( $log_id . " Could not create exclusive lock" , E_USER_ERROR );
+	
+		//pull/merge 
+		exec("git --git-dir=$hookbranches[$branch] pull webhook $branch 2>&1 " , $result );
+		trigger_error( $log_id . " Pull result " . var_export($result,true) , E_USER_NOTICE );
 
+		// Unlock and delete Lockfile
+		flock($lockFile, LOCK_UN);    // release the lock
+		fclose($lockFile);
+
+	} else {
+		trigger_error( $log_id . "Branch not found: $branch\n" , E_USER_NOTICE );
+	}
+} else {
+	trigger_error( $log_id . "No action for event $event\n" , E_USER_NOTICE );
+}
+trigger_error( $log_id . " Done" , E_USER_NOTICE );
+
+
+// OLD CODE
+/*
 $new_info = array( 	'timestamp' => $time ,
 					'event' => $event ,
 					'branch' =>  $branch , 
-					'commit' =>  $commit ,
+					'commit' =>  $aftercommit ,
 					'repo' =>  $repo ,
 					);
-					
-if ( 'push' == $event ) {
-	if ( array_key_exists ( $branch  , $hookbranches ) ) {
-		$result = shell_exec ( "cd $hookbranches[$branch];ls" );
-		mail('bsouter@jhu.edu', 'result', $result);
-	}
-}
-
-// or instead of writing to the events file
-// do rsync with config files and pull in new commit on branch yourself.
-
-/* 
-if event == push 
-  if repo == elgg-repo
-    if branch == test-branch
-      cd to elgg/html
-	  if current-commit = before
-	  write lockfile
-	  pull in after-commit, recursively	  
-	  delete lockfile
-	  return
-    elseif branch == prod-branch
-      cd to test.elgg/html
-	  if current-commit = before
-	  write lockfile
-	  pull in after-commit, recursively	  
-	  delete lockfile
-	  return
-    end
-  end
-end
-send email notify invalid push
 */
-
-
-// FUNCTIONS
-function write_event( $new_info ) {
+// OLD FUNCTIONS
+/*function write_event( $new_info ) {
 	$events_fname = 'webhook-data/github-webhook-event.txt';
 	$waitIfLocked = true;
 
@@ -141,4 +157,5 @@ function write_event( $new_info ) {
 	fclose( $eventFile );
 	return true;
 }
+*/
 
