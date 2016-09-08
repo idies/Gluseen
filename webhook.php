@@ -31,8 +31,8 @@ set_error_handler( "webhookError" ) ;
 
 //set secret token, date, event, git id of webhook event.
 $hookSecret = 'ypusSt2eQxawYV6Uvk7qty3XNqLtGdB9' ;
-$hookbranches["test_elgg_idies"] = "/data1/dswww-ln01/gluseen.org/test.elgg/html/.git";
-$hookbranches["prod_elgg_idies"] = "/data1/dswww-ln01/gluseen.org/elgg/html/.git";
+$hookbranches["test"] = "/data1/dswww-ln01/gluseen.org/test.elgg/html/.git";
+$hookbranches["prod"] = "/data1/dswww-ln01/gluseen.org/elgg/html/.git";
 $hookrepo = "GLUSEEN-ELGG";
 
 $event = $_SERVER['HTTP_X_GITHUB_EVENT'] ?: 'null-event';
