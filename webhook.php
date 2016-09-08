@@ -84,7 +84,7 @@ if ( 'push' == $event ) {
 	if ( array_key_exists ( $branch  , $hookbranches ) ) {
 		
 		//fetch from origin, then find the commit & branch from result
-		exec("git --git-dir=$hookbranches[$branch] fetch --all 2>&1 " , $fetch_result );
+		//exec("git --git-dir=$hookbranches[$branch] fetch --all 2>&1 " , $fetch_result );
 		exec("git --git-dir=$hookbranches[$branch] log -1 --decorate=full 2>&1 | grep commit" , $result );
 		$pattern = "/^commit ([[:alnum:]]*) \((.*)\)$/";
 		preg_match ( $pattern , $result[0] ,$matches);
