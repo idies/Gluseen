@@ -91,9 +91,7 @@ echo elgg_view('core/account/login_dropdown');
 		<li class="elgg-menu-item-bookmarks">
 	<a href="/boxplot">Boxplot Visualization</a>
 	</li>
-			<li class="elgg-menu-item-bookmarks">
-	<a href="/ipython">iPython Notebook</a>
-	</li>
+			
 	</ul>
 	</li>
 	</ul>
