@@ -26,8 +26,9 @@ function d3_init() {
 		$url = 'http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js';
 	elgg_register_js('d3.tip', $url);
 	
-		$url = 'mod/d3data2/jquery-csv.js';
-	elgg_register_js('jquery-csv', $url);
+		$url2 = 'mod/d3/jquery.csv.js';
+		//$url2 = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js';
+	elgg_register_js('j-c', $url2);
 
 //elgg_load_css('special');
 
@@ -53,10 +54,10 @@ function d3_page_handler() {
 
 elgg_load_js('d3');
 elgg_load_js('d3.tip');
-elgg_load_js('jquery-csv');
+elgg_load_js('j-c');
 
 $params = array(
-        'title' => 'Visualization',
+        'title' => 'Bar Chart Visualization',
         'content' => '<style type="text/css">
 
 
@@ -585,14 +586,6 @@ $.post("mod/d3/read2.php",{habitat:habitat},function(data1){
 d3.csv(data1, type, function(data) {
 
 var data= $.csv.toObjects(data1);
-//alert(typeof(data));
-
-//fdata=data.filter(function (d){
-//if(d["DeploymentDate"]==time){
-//return d;
-//}
-
-//});
 
 
 data.forEach(function(d){

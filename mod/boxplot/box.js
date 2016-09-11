@@ -167,7 +167,7 @@ d3.box = function() {
       var outlier = g.selectAll("circle.outlier")
           .data(outlierIndices, Number);
 
-      outlier.enter().insert("circle", "text")
+       outlier.enter().insert("circle", "text")
           .attr("class", "outlier")
           .attr("r", 5)
           .attr("cx", width / 2)
@@ -176,7 +176,7 @@ d3.box = function() {
         .transition()
           .duration(duration)
           .attr("cy", function(i) { return x1(d[i]); })
-          .style("opacity", 1);
+          .style("opacity", 1); 
 
       outlier.transition()
           .duration(duration)
@@ -195,7 +195,7 @@ d3.box = function() {
       // Update box ticks.
       var boxTick = g.selectAll("text.box")
           .data(quartileData);
-	 if(showLabels == true) {
+/* 	 if(showLabels == true) {
       boxTick.enter().append("text")
           .attr("class", "box")
           .attr("dy", ".3em")
@@ -207,7 +207,7 @@ d3.box = function() {
         .transition()
           .duration(duration)
           .attr("y", x1);
-	}
+	} */
 		 
       boxTick.transition()
           .duration(duration)
@@ -219,7 +219,7 @@ d3.box = function() {
       // to join box ticks pre-transition with whisker ticks post-.
       var whiskerTick = g.selectAll("text.whisker")
           .data(whiskerData || []);
-	if(showLabels == true) {
+/* 	if(showLabels == true) {
       whiskerTick.enter().append("text")
           .attr("class", "whisker")
           .attr("dy", ".3em")
@@ -232,7 +232,7 @@ d3.box = function() {
           .duration(duration)
           .attr("y", x1)
           .style("opacity", 1);
-	}
+	} */
       whiskerTick.transition()
           .duration(duration)
           .text(format)

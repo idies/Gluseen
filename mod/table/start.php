@@ -13,8 +13,8 @@ function table_init() {
 
 
 	
-		$url = 'http://jquery-csv.googlecode.com/git/src/jquery.csv.js';
-	elgg_register_js('jquery-csv', $url);
+		$url2 = 'mod/d3/jquery.csv.js';
+	elgg_register_js('j-c', $url2);
 
 //elgg_load_css('special');
 
@@ -32,7 +32,7 @@ function table_init() {
 function table_handler() {
 //elgg_load_js('d3');
 //elgg_load_js('d3.tip');
-elgg_load_js('jquery-csv');
+elgg_load_js('j-c');
 
 
 

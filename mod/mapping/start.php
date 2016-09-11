@@ -1,7 +1,7 @@
 <?php
 	elgg_register_event_handler('init', 'system', 'mapping_init');
-	$results = file_get_contents('http://scitest09.pha.jhu.edu/elgg/CSVtoKML.php');//load KML file
-	//$results = file_get_contents('http://yutingsite.com/queryGluseen/CSVtoKML.php'); 
+	//$results = file_get_contents('http://yutingsite.com/queryGluseen/CSVtoKML.php'); //load KML file
+	$results = file_get_contents('http://scitest09.pha.jhu.edu/elgg/CSVtoKML.php'); //load KML file
  	//getCSV_KML();
 
 function mapping_init() {

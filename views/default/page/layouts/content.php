@@ -15,10 +15,10 @@
  */
 
 // give plugins an opportunity to add to content sidebars
-$sidebar_content = elgg_extract('sidebar', $vars, '');
+/* $sidebar_content = elgg_extract('sidebar', $vars, '');
 $params = $vars;
 $params['content'] = $sidebar_content;
-$sidebar = elgg_view('page/layouts/content/sidebar', $params);
+$sidebar = elgg_view('page/layouts/content/sidebar', $params); */
 
 // allow page handlers to override the default header
 if (isset($vars['header'])) {
@@ -49,7 +49,7 @@ $body = $header . $filter . $content . $footer;
 
 $params = array(
 	'content' => $body,
-	'sidebar' => $sidebar,
+//	'sidebar' => $sidebar,
 );
 if (isset($vars['class'])) {
 	$params['class'] = $vars['class'];

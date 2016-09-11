@@ -33,10 +33,6 @@ var url="<?php echo $url?>";
 //var src3 = 'http://yutingsite.com/queryGluseen/baltimoresite.kml?key=' + Math.random();
 var src3 = 'http://scitest09.pha.jhu.edu/elgg/baltimoresite.kml?key=' + Math.random();
 
-//var src3 = url+'/baltimoreKML.kml?key=' + Math.random();
-//var src3 = _SERVER["DOCUMENT_ROOT"].'/baltimoreKML.kml?key=' + Math.random();
-//alert(url);
-//alert("hhhhhhhhhh");
 function initializeKML() {
 
 

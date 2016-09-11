@@ -79,7 +79,7 @@ border: 1px solid black;
 		<?php
 			echo elgg_view('page/elements/sidebar', $vars);
 		?>
-	</div>
+	</div> 
 
 	<div class="elgg-main elgg-body">
 		<?php
