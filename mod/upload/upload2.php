@@ -24,7 +24,7 @@ curl_close($ch);
 if ($response) {
  // echo $response;
  echo "<br>";
- echo "<h3>Upload Successfully</h3><br>";
+ echo "<h3>Upload Successful!</h3><br>";
  echo "<p>File Name:".$filename."</p>";
  echo "<br>";
  echo "<p>File Size:".$filesize."</p>";

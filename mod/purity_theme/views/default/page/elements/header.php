@@ -86,10 +86,10 @@ echo elgg_view('core/account/login_dropdown');
 	<a href="/manuscript">Manuscripts</a>
 	</li>
 	<li class="elgg-menu-item-bookmarks">
-	<a href="/d3">Bar Visualization</a>
+	<a href="/d3">Bar Chart</a>
 	</li>
 		<li class="elgg-menu-item-bookmarks">
-	<a href="/boxplot">Boxplot Visualization</a>
+	<a href="/boxplot">Boxplot</a>
 	</li>
 			<li class="elgg-menu-item-bookmarks">
 	<a href="/ipython">iPython Notebook</a>
