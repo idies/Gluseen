@@ -36,7 +36,7 @@ function sites_page_handler() {
 
 
 $params = array(
-        'title' => 'Research Sites',
+        'title' => 'Research Sites!!',
         'content' => '
 		
 		
