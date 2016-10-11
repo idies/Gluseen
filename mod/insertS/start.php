@@ -112,7 +112,7 @@ td {
 	if (flag==0)
 	{
 
-	var newdata="";   
+var newdata="Site Name, Site Longitude, Site Latitude;";  	
 for (i=0;i<data2.length;i++){
 var strdata=data2[i].toString();
 var strdata=strdata.concat(";")
