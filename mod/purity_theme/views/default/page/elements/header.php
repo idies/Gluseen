@@ -38,7 +38,9 @@ echo elgg_view('core/account/login_dropdown');
 	<li class="elgg-menu-item-bookmarks">
 	<a href="/groups/all">Groups</a>
 	</li>
-	
+	<li class="elgg-menu-item-activity">
+	<a href="/members">Members</a>
+	</li>
 	</ul>
 	</li>
 		<li class="elgg-menu-item"><a href="#">Places</a>
