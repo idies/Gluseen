@@ -185,7 +185,7 @@ if (false) {
     }
     .elgg-menu-site > li > a {
         padding: 3px 13px 0px 13px;
-        height: 25px;
+        height: 27px;
         background:none;
         font-weight:bold;
 		

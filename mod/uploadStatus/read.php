@@ -22,7 +22,7 @@ $token= $_COOKIE['token'];
 	
     // same as <input type="file" name="file_box">
    $post = array(
-	"Query"=>"select * from [EarthSciTest_scitest02].[stateReg].[Load]"
+	"Query"=>"select * from [EarthSciTest].[stateReg].[Load]"
 	
 	);
 	$data_string = json_encode($post);

@@ -150,6 +150,15 @@ $.each(selectValues, function(key, value) {
     });
 	var data2=[];
 	$("#run").bind("click", function() {
+	
+		$.ajax({
+  type: "POST",
+  url: "mod/insert/enable.php",
+  data: { name: "John" }
+}).done(function( msg ) {
+  //alert( "Message: " + msg );
+});  
+
 	upload();
 
     });
@@ -182,7 +191,7 @@ var data2=[];
 	if (flag==0)
 	{
 
- var newdata="";   
+ var newdata="HabitatID, SiteID, Plot Name, Plot Longitude, Plot Latitude;";   
 for (i=0;i<data2.length;i++){
 var strdata=data2[i].toString();
 var strdata=strdata.concat(";")
@@ -331,9 +340,8 @@ else
 	</div>
 	
 
-
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyA6Wy3kEdQTHHMnHsFJOuRA4YtMvIoHaKY"
-  async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+async defer></script>
 <script >
 
 var map;

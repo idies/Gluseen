@@ -1211,7 +1211,8 @@ else
   }
 }   
 	curl_close($ch);	
-	
+	*/
+	$token_user = $_GET['token'];
 	$container_name='Gluseen';
 	$url7 = ROOT_URL.'/vospace-2.0/nodes/'.$container_name;
 	
@@ -1223,7 +1224,7 @@ else
     curl_setopt($ch, CURLOPT_URL, $url7);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 	
-	$xml_data = '<vos:node xmlns:xsi="http://www.w3.org/2001/thisSchema-instance" xsi:type="vos:ContainerNode" xmlns:vos="http://www.ivoa.net/xml/VOSpace/v2.0" uri="vos://scitest09!vospace//'.$container_name.'">
+	$xml_data = '<vos:node xmlns:xsi="http://www.w3.org/2001/thisSchema-instance" xsi:type="vos:ContainerNode" xmlns:vos="http://www.ivoa.net/xml/VOSpace/v2.0" uri="vos://scidrive.org!vospace//'.$container_name.'">
 	<vos:properties/>
 	<vos:accepts/>
 	<vos:provides/>
@@ -1236,16 +1237,17 @@ else
     curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_data);
     
 	$response5 = curl_exec($ch);
-	
+	echo $response5;
 	curl_close($ch); 
- 
-	//echo $response5;
+ echo $token_user;
+	
 	
 	$url8 = ROOT_URL.'/vospace-2.0/1/account/service/gluseenprocessor';
 	$ch=curl_init(); 
 
     $post = array(
-      "connectionUrl"=>"jdbc:sqlserver://sciserver04.pha.jhu.edu:1433;databaseName=EarthSciTest_scitest02;integratedSecurity=false;user=gluseen;password=67sFSMFDjL;",
+      "connectionUrl"=>
+	 CONNECT_STRING, //"jdbc:sqlserver://sciserver04.pha.jhu.edu:1433;databaseName=EarthSciTest_scitest02;integratedSecurity=false;user=gluseen;password=67sFSMFDjL;",
   "tableName"=>"dbo.DecompSample",
   "containers"=>array("/".$container_name)
   
@@ -1263,8 +1265,9 @@ else
 
  
 	$result = curl_exec($ch);
+	echo $result;
 	curl_close($ch); 
-	*/
+	
 	/*
 	$url9=API_URL.'/login-portal/reguser';
 
