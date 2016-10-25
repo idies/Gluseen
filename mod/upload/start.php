@@ -79,6 +79,15 @@ Site:
 
 $("#bt").click(function(){
 	
+			$.ajax({
+  type: "POST",
+  url: "mod/upload/enable.php",
+  data: { name: "John" }
+}).done(function( msg ) {
+  //alert( "Message: " + msg );
+}); 
+
+	
 	var fileInput = document.getElementById("file");
 var file = fileInput.files[0];
      // var file_data = $("#file")[0].files[0];   
