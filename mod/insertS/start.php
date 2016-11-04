@@ -84,6 +84,15 @@ td {
     });
 	var data2=[];
 	$("#run").bind("click", function() {
+		
+		$.ajax({
+  type: "POST",
+  url: "mod/insertS/enable.php",
+  data: { name: "" }
+}).done(function( msg ) {
+  //alert( "Message: " + msg );
+});  
+		
 	upload();
 
     });
