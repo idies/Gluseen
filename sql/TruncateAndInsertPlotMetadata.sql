@@ -1,3 +1,4 @@
+--remove existing data from tables
 truncate table city
 truncate table habitat
 truncate table plot
@@ -5,12 +6,16 @@ truncate table site
 
 
 
+-- insert City data
 INSERT [dbo].[City] ([CityID], [Name], [Population], [age]) VALUES (1, N'Baltimore', 622104, 286)
 GO
 INSERT [dbo].[City] ([CityID], [Name], [Population], [age]) VALUES (2, N'Lahti', 102662, 570)
 GO
 INSERT [dbo].[City] ([CityID], [Name], [Population], [age]) VALUES (3, N'Helsinki', 599676, 465)
 GO
+
+--insert Habitiat data
+
 INSERT [dbo].[Habitat] ([HabitatID], [HabitatType], [SiteID], [Description], [PhotoID]) VALUES (1, N'Remnant', 1, NULL, NULL)
 GO
 INSERT [dbo].[Habitat] ([HabitatID], [HabitatType], [SiteID], [Description], [PhotoID]) VALUES (2, N'Turf', 1, NULL, NULL)
@@ -19,6 +24,8 @@ INSERT [dbo].[Habitat] ([HabitatID], [HabitatType], [SiteID], [Description], [Ph
 GO
 INSERT [dbo].[Habitat] ([HabitatID], [HabitatType], [SiteID], [Description], [PhotoID]) VALUES (4, N'Reference', 1, NULL, NULL)
 
+
+--insert Plot data
 set identity_insert plot on
 
 GO
@@ -144,6 +151,7 @@ INSERT [dbo].[Plot] ([PlotID], [SiteID], [HabitatID], [Name], [plotLat], [plotLo
 
 set identity_insert plot off
 
+--insert Site data
 set identity_insert site on
 GO
 INSERT [dbo].[Site] ([SiteID], [Name], [siteLat], [siteLon]) VALUES (1, N'Baltimore', 39.2833, -76.6167)
