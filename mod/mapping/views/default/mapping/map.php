@@ -1,9 +1,9 @@
 
  <div id="map_canvas" style="width:100%; height:400px"></div>
-
-
 	
-	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyA6Wy3kEdQTHHMnHsFJOuRA4YtMvIoHaKY"
+  async defer></script>
 
 <script>
 var map;
