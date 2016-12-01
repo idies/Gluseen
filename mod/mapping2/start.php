@@ -24,7 +24,7 @@ function mapping_page_handler() {
 		</form>
 		<br>
 		<div id="map"  style="height:400px;" > Map</div>
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyA6Wy3kEdQTHHMnHsFJOuRA4YtMvIoHaKY"
 async defer></script>
   
 <script >
