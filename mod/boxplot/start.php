@@ -110,12 +110,7 @@ height:100%;
 
    
     </style>
-<!--
-<b>Group by:</b><br>
-<input type="radio" name="varation" id="site" value="site">City<br>
-<input type="radio" name="varation" id="habitat" value="habitat">Habitat
-<br>
--->
+
 <b>City:</b> 
 <form>
 <select id="siteID">
@@ -255,7 +250,14 @@ tmp2=[];
  var t=x.PlotName;
  var t2=x.PlotID;
  
- if (tmp2.indexOf(t2)==-1)
+
+ if (x.CollectionWeight==null)
+ {
+   }
+	
+	else
+	{
+	 if (tmp2.indexOf(t2)==-1)
  {
  tmp2.push(t2);
  tmp.push(t);
@@ -266,12 +268,7 @@ tmp2=[];
  {
  var e=tmp2.indexOf(t2);
  }
- if (x.CollectionWeight=="null")
- {
-   }
-	
-	else
-	{
+ 
 	var   r = 1;
      var   s = (x.DeploymentWeight-x.CollectionWeight)/x.DeploymentWeight;
      var   d = data2[e];
